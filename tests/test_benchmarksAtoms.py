@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from suscomp.benchmarkatoms import Job, JobState, JobStateError
+from sustainablecompetition.benchmarkatoms import Job, JobState, JobStateError
 
 class TestJob:
     @pytest.mark.asyncio
