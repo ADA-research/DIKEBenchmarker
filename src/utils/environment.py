@@ -6,19 +6,20 @@ import os
 import sys
 import subprocess
 
+
 def save_environment(nb_assigned_cores, assigned_memory, csv_file="run_environment.csv"):
     # Collect CPU information using py-cpuinfo
     cpu_info = cpuinfo.get_cpu_info()
 
     # Extract CPU details
-    cpu_vendor = cpu_info.get('vendor_id_raw', 'N/A')
-    cpu_model = cpu_info.get('brand_raw', 'N/A')
-    cpu_freq = cpu_info.get('hz_actual_friendly', 'N/A')
-    cpu_l1d_size = cpu_info.get('l1_data_cache_size', 0)
-    cpu_l1i_size = cpu_info.get('l1_instruction_cache_size', 0)
+    cpu_vendor = cpu_info.get("vendor_id_raw", "N/A")
+    cpu_model = cpu_info.get("brand_raw", "N/A")
+    cpu_freq = cpu_info.get("hz_actual_friendly", "N/A")
+    cpu_l1d_size = cpu_info.get("l1_data_cache_size", 0)
+    cpu_l1i_size = cpu_info.get("l1_instruction_cache_size", 0)
     cpu_l1_size = cpu_l1d_size + cpu_l1i_size
-    cpu_l2_size = cpu_info.get('l2_cache_size', 'N/A')
-    cpu_l3_size = cpu_info.get('l3_cache_size', 'N/A')
+    cpu_l2_size = cpu_info.get("l2_cache_size", "N/A")
+    cpu_l3_size = cpu_info.get("l3_cache_size", "N/A")
 
     # Collect memory information using psutil
     mem = psutil.virtual_memory()
@@ -36,10 +37,7 @@ def save_environment(nb_assigned_cores, assigned_memory, csv_file="run_environme
         except subprocess.CalledProcessError:
             activated_modules = "N/A"
         try:
-            boost = subprocess.check_output(
-                "lscpu | grep 'Frequency boost:' | awk '{print $3}'",
-                shell=True
-            ).decode().strip()
+            boost = subprocess.check_output("lscpu | grep 'Frequency boost:' | awk '{print $3}'", shell=True).decode().strip()
         except subprocess.CalledProcessError:
             boost = "N/A"
 
@@ -65,6 +63,7 @@ def save_environment(nb_assigned_cores, assigned_memory, csv_file="run_environme
             f.write(f"{env_hash},{env_string}\n")
 
     return env_hash
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:

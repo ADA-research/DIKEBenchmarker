@@ -417,8 +417,10 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# python compiled
+# python
 *.egg-info
+.venv*
+.ruff_cache*
 
 # unziped solvers
 solvers/*/*/*/
