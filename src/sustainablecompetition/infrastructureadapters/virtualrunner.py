@@ -37,3 +37,6 @@ class VirtualRunner(AbstractRunner):
         if pd.notnull(runtime):
             return Result(job, runtime, 0)
         return None
+
+    def cancel(self, job):
+        return super().cancel(job)
