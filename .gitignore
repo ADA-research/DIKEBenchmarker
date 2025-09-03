@@ -419,6 +419,7 @@ FodyWeavers.xsd
 
 # python compiled
 *.egg-info
+.venv*
 
 # unziped solvers
 solvers/*/*/*/
