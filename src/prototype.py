@@ -8,7 +8,7 @@ import sys
 import pandas as pd
 
 from sustainablecompetition.benchmarkatoms import Job, JobState, JobStateError, Result
-from sustainablecompetition.methods.methodinterface import Benchmarker
+from sustainablecompetition.benchmarkingmethods.benchmarkerinterface import Benchmarker
 from sustainablecompetition.infrastructureadapters.virtualrunner import VirtualRunner
 
 logger = logging.getLogger(__name__)
