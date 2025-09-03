@@ -418,3 +418,6 @@ FodyWeavers.xsd
 *.msp
 
 *.egg-info
+
+# unziped solvers
+solvers/*/*/*/
