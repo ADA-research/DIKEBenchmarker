@@ -7,14 +7,18 @@ import sys
 
 import polars as pl
 
-from sustainablecompetition.benchmarkatoms import Job, JobState, JobStateError, Result
-from sustainablecompetition.benchmarkingmethods.benchmarkerinterface import Benchmarker
+from sustainablecompetition.controller import Controller
 from sustainablecompetition.infrastructureadapters.virtualrunner import VirtualRunner
+from sustainablecompetition.benchmarkingmethods.trivialbenchmarker import TrivialBenchmarker
 
 logger = logging.getLogger(__name__)
 
 
 def main():
+    """
+    Integration test using the trivial benchmarker (which submits all the instances)
+    and the virtual runner (which returns the data from a csv file).
+    """
     parser = argparse.ArgumentParser(description="Test run the benchmarking tool")
     parser.add_argument("file", help="Path to CSV file containing solver runtimes")
     args = parser.parse_args()
@@ -25,6 +29,10 @@ def main():
 
     df = pl.read_csv(args.file, index_col="hash")
     runner = VirtualRunner(df)
+    benchmarks = df.select("hash").to_series().to_list()
+    columns = df.columns.tolist()
+    method = TrivialBenchmarker(benchmarks, columns[0])
+    controller = Controller(method, runner, njobs=1)
 
 
 if __name__ == "__main__":
