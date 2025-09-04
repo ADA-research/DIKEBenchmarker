@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # move instances to local machine
 # use runsolver to run the solver and get running data

@@ -9,18 +9,748 @@ Shell debugging restarted
 + cores_array=(4 8 16 32)
 + mem_array=(32 64 128 256)
 ++ lscpu
-++ awk '{print $2}'
 ++ grep 'Socket(s)'
+++ awk '{print $2}'
 + num_sockets=2
 + for current_cores in "${cores_array[@]}"
 + for current_mem in "${mem_array[@]}"
 ++ python ../src/utils/environment.py 4 32
-+ env_hash=f445c32345a47e48d042506d11691c51
-++ seq 0 5
-+ for run in $(seq 0 5)
-++ seq 0 1
-+ for socket in $(seq 0 1)
-+ for socket in $(seq 0 1)
-+ srun --cpus-per-task=4 --mem=32 --cpu-bind=sockets bash ./run_solver.sh f445c32345a47e48d042506d11691c51 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/BreakID-Kissat/kissat ./00d1fe07ab948b348bb3fb423b1ef40d-lec_mult_KvW_12x11.sanitized.cnf 32 500
++ env_hash=5ce80a7e6f8e955dc4eab466ff6a9b65
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:46:59--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:46:59--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.51M=0.02s
+
+2025-09-04 16:47:00 (1.51 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
 + wait
-+ srun --cpus-per-task=4 --mem=32 --cpu-bind=sockets bash ./run_solver.sh f445c32345a47e48d042506d11691c51 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/BreakID-Kissat/kissat ./00d1fe07ab948b348bb3fb423b1ef40d-lec_mult_KvW_12x11.sanitized.cnf 32 500
++ xz -d instance1.cnf.xz
+xz: instance1.cnf: File exists
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:00--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:00--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.08M=0.02s
+
+2025-09-04 16:47:00 (2.08 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait
++ xz -d instance2.cnf.xz
+xz: instance2.cnf: File exists
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=4 --mem=32 --cpu-bind=sockets bash ./run_solver.sh 5ce80a7e6f8e955dc4eab466ff6a9b65 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 32 5000
+++ srun --cpus-per-task=4 --mem=32 --cpu-bind=sockets bash ./run_solver.sh 5ce80a7e6f8e955dc4eab466ff6a9b65 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 32 5000
++ output2=CRASHED,0.000611
++ echo CRASHED,0.000611,5ce80a7e6f8e955dc4eab466ff6a9b65,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output1=CRASHED,0.000384
++ echo CRASHED,0.000384,5ce80a7e6f8e955dc4eab466ff6a9b65,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 4 64
++ env_hash=25b5bb477efece386efebb79da599480
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:02--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:02--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.95M=0.02s
+
+2025-09-04 16:47:03 (1.95 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3378831
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:03--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:03--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 1.77M=0.02s
+
+2025-09-04 16:47:03 (1.77 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3378831
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=4 --mem=64 --cpu-bind=sockets bash ./run_solver.sh 25b5bb477efece386efebb79da599480 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 64 5000
+++ srun --cpus-per-task=4 --mem=64 --cpu-bind=sockets bash ./run_solver.sh 25b5bb477efece386efebb79da599480 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 64 5000
++ output1=CRASHED,0.00057
++ echo CRASHED,0.00057,25b5bb477efece386efebb79da599480,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000471
++ echo CRASHED,0.000471,25b5bb477efece386efebb79da599480,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 4 128
++ env_hash=2d4eb23773e577572e9cc68a4cdbba0d
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:05--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:05--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.65M=0.02s
+
+2025-09-04 16:47:06 (1.65 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3378923
+/var/spool/slurmd/job7279754/slurm_script: line 31: wait: pid 3378923 is not a child of this shell
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:06--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:06--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 1.34M=0.03s
+
+2025-09-04 16:47:06 (1.34 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3378923
+/var/spool/slurmd/job7279754/slurm_script: line 53: wait: pid 3378923 is not a child of this shell
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=4 --mem=128 --cpu-bind=sockets bash ./run_solver.sh 2d4eb23773e577572e9cc68a4cdbba0d /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 128 5000
+++ srun --cpus-per-task=4 --mem=128 --cpu-bind=sockets bash ./run_solver.sh 2d4eb23773e577572e9cc68a4cdbba0d /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 128 5000
++ output2=CRASHED,0.000578
++ echo CRASHED,0.000578,2d4eb23773e577572e9cc68a4cdbba0d,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output1=CRASHED,0.000502
++ echo CRASHED,0.000502,2d4eb23773e577572e9cc68a4cdbba0d,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 4 256
++ env_hash=80a8f6fc5b8e119ab1517e5f636c89ed
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:08--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:08--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 2.37M=0.02s
+
+2025-09-04 16:47:09 (2.37 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379012
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:09--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:09--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.07M=0.02s
+
+2025-09-04 16:47:09 (2.07 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379012
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=4 --mem=256 --cpu-bind=sockets bash ./run_solver.sh 80a8f6fc5b8e119ab1517e5f636c89ed /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 256 5000
+++ srun --cpus-per-task=4 --mem=256 --cpu-bind=sockets bash ./run_solver.sh 80a8f6fc5b8e119ab1517e5f636c89ed /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 256 5000
++ output1=CRASHED,0.000625
++ echo CRASHED,0.000625,80a8f6fc5b8e119ab1517e5f636c89ed,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000428
++ echo CRASHED,0.000428,80a8f6fc5b8e119ab1517e5f636c89ed,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_cores in "${cores_array[@]}"
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 8 32
++ env_hash=c4b5da9604e6cd3afd84f1f5ba354ba4
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:11--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:11--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.97M=0.02s
+
+2025-09-04 16:47:12 (1.97 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379101
+/var/spool/slurmd/job7279754/slurm_script: line 31: wait: pid 3379101 is not a child of this shell
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:12--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:12--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.35M=0.01s
+
+2025-09-04 16:47:12 (2.35 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379101
+/var/spool/slurmd/job7279754/slurm_script: line 53: wait: pid 3379101 is not a child of this shell
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=8 --mem=32 --cpu-bind=sockets bash ./run_solver.sh c4b5da9604e6cd3afd84f1f5ba354ba4 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 32 5000
+++ srun --cpus-per-task=8 --mem=32 --cpu-bind=sockets bash ./run_solver.sh c4b5da9604e6cd3afd84f1f5ba354ba4 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 32 5000
++ output2=CRASHED,0.000743
++ echo CRASHED,0.000743,c4b5da9604e6cd3afd84f1f5ba354ba4,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output1=CRASHED,0.000536
++ echo CRASHED,0.000536,c4b5da9604e6cd3afd84f1f5ba354ba4,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 8 64
++ env_hash=f91bf6d86e37e3aa09d1d3f6f41cceb9
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:14--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:14--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.49M=0.02s
+
+2025-09-04 16:47:15 (1.49 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379189
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:15--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:15--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.63M=0.01s
+
+2025-09-04 16:47:15 (2.63 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379189
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=8 --mem=64 --cpu-bind=sockets bash ./run_solver.sh f91bf6d86e37e3aa09d1d3f6f41cceb9 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 64 5000
+++ srun --cpus-per-task=8 --mem=64 --cpu-bind=sockets bash ./run_solver.sh f91bf6d86e37e3aa09d1d3f6f41cceb9 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 64 5000
++ output2=CRASHED,0.000793
++ echo CRASHED,0.000793,f91bf6d86e37e3aa09d1d3f6f41cceb9,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output1=CRASHED,0.001006
++ echo CRASHED,0.001006,f91bf6d86e37e3aa09d1d3f6f41cceb9,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 8 128
++ env_hash=3f30de4048aad165823841a57701cb70
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:17--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:18--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.80M=0.02s
+
+2025-09-04 16:47:18 (1.80 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379277
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:18--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:18--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.28M=0.02s
+
+2025-09-04 16:47:18 (2.28 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379277
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=8 --mem=128 --cpu-bind=sockets bash ./run_solver.sh 3f30de4048aad165823841a57701cb70 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 128 5000
+++ srun --cpus-per-task=8 --mem=128 --cpu-bind=sockets bash ./run_solver.sh 3f30de4048aad165823841a57701cb70 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 128 5000
++ output1=CRASHED,0.00066
++ echo CRASHED,0.00066,3f30de4048aad165823841a57701cb70,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000604
++ echo CRASHED,0.000604,3f30de4048aad165823841a57701cb70,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 8 256
++ env_hash=9670586f5f0cdd352addea50a853e2b2
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:20--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:20--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.58M=0.02s
+
+2025-09-04 16:47:21 (1.58 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379365
+/var/spool/slurmd/job7279754/slurm_script: line 31: wait: pid 3379365 is not a child of this shell
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:21--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:21--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.11M=0.02s
+
+2025-09-04 16:47:21 (2.11 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379365
+/var/spool/slurmd/job7279754/slurm_script: line 53: wait: pid 3379365 is not a child of this shell
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=8 --mem=256 --cpu-bind=sockets bash ./run_solver.sh 9670586f5f0cdd352addea50a853e2b2 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 256 5000
+++ srun --cpus-per-task=8 --mem=256 --cpu-bind=sockets bash ./run_solver.sh 9670586f5f0cdd352addea50a853e2b2 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 256 5000
++ output1=CRASHED,0.000683
++ echo CRASHED,0.000683,9670586f5f0cdd352addea50a853e2b2,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000677
++ echo CRASHED,0.000677,9670586f5f0cdd352addea50a853e2b2,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_cores in "${cores_array[@]}"
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 16 32
++ env_hash=45882db0da29d3a9ae5bb0ab02bb9840
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:23--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:23--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.80M=0.02s
+
+2025-09-04 16:47:24 (1.80 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379454
+/var/spool/slurmd/job7279754/slurm_script: line 31: wait: pid 3379454 is not a child of this shell
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:24--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:24--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.31M=0.02s
+
+2025-09-04 16:47:24 (2.31 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379454
+/var/spool/slurmd/job7279754/slurm_script: line 53: wait: pid 3379454 is not a child of this shell
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=16 --mem=32 --cpu-bind=sockets bash ./run_solver.sh 45882db0da29d3a9ae5bb0ab02bb9840 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 32 5000
+++ srun --cpus-per-task=16 --mem=32 --cpu-bind=sockets bash ./run_solver.sh 45882db0da29d3a9ae5bb0ab02bb9840 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 32 5000
++ output1=CRASHED,0.000776
++ echo CRASHED,0.000776,45882db0da29d3a9ae5bb0ab02bb9840,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000755
++ echo CRASHED,0.000755,45882db0da29d3a9ae5bb0ab02bb9840,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 16 64
++ env_hash=f66c7adbd621bd7daaee3ab9273f51c4
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:26--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:27--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.47M=0.02s
+
+2025-09-04 16:47:27 (1.47 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379543
+/var/spool/slurmd/job7279754/slurm_script: line 31: wait: pid 3379543 is not a child of this shell
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:27--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:27--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 1.73M=0.02s
+
+2025-09-04 16:47:27 (1.73 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379543
+/var/spool/slurmd/job7279754/slurm_script: line 53: wait: pid 3379543 is not a child of this shell
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=16 --mem=64 --cpu-bind=sockets bash ./run_solver.sh f66c7adbd621bd7daaee3ab9273f51c4 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 64 5000
+++ srun --cpus-per-task=16 --mem=64 --cpu-bind=sockets bash ./run_solver.sh f66c7adbd621bd7daaee3ab9273f51c4 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 64 5000
++ output1=CRASHED,0.000673
++ echo CRASHED,0.000673,f66c7adbd621bd7daaee3ab9273f51c4,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000715
++ echo CRASHED,0.000715,f66c7adbd621bd7daaee3ab9273f51c4,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 16 128
++ env_hash=d9bb51c68bd7c929ced60c182b170ac2
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:30--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:30--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 2.02M=0.02s
+
+2025-09-04 16:47:30 (2.02 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379631
+/var/spool/slurmd/job7279754/slurm_script: line 31: wait: pid 3379631 is not a child of this shell
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:30--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:30--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.36M=0.01s
+
+2025-09-04 16:47:30 (2.36 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379631
+/var/spool/slurmd/job7279754/slurm_script: line 53: wait: pid 3379631 is not a child of this shell
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=16 --mem=128 --cpu-bind=sockets bash ./run_solver.sh d9bb51c68bd7c929ced60c182b170ac2 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 128 5000
+++ srun --cpus-per-task=16 --mem=128 --cpu-bind=sockets bash ./run_solver.sh d9bb51c68bd7c929ced60c182b170ac2 /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 128 5000
++ output2=CRASHED,0.000706
++ echo CRASHED,0.000706,d9bb51c68bd7c929ced60c182b170ac2,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output1=CRASHED,0.000774
++ echo CRASHED,0.000774,d9bb51c68bd7c929ced60c182b170ac2,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 16 256
++ env_hash=04342e5989111c659ac350eee11f492e
++ true
++ IFS=
++ read -r instance1
++ wget http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d -O instance1.cnf.xz
+--2025-09-04 16:47:33--  http://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d [following]
+--2025-09-04 16:47:33--  https://benchmark-database.de/file/00d1fe07ab948b348bb3fb423b1ef40d
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 38368 (37K) [application/x-xz]
+Saving to: ‘instance1.cnf.xz’
+
+     0K .......... .......... .......... .......              100% 1.97M=0.02s
+
+2025-09-04 16:47:33 (1.97 MB/s) - ‘instance1.cnf.xz’ saved [38368/38368]
+
++ wait 3379719
++ xz -d instance1.cnf.xz
++ uncompressed_file1=instance1.cnf
++ instance1_hash=00d1fe07ab948b348bb3fb423b1ef40d
++ IFS=
++ read -r instance2
++ wget http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 -O instance2.cnf.xz
+--2025-09-04 16:47:33--  http://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Resolving benchmark-database.de (benchmark-database.de)... 202.61.200.228
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:80... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0 [following]
+--2025-09-04 16:47:33--  https://benchmark-database.de/file/02066c116dbacc40ec5cca2067db26c0
+Connecting to benchmark-database.de (benchmark-database.de)|202.61.200.228|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 36384 (36K) [application/x-xz]
+Saving to: ‘instance2.cnf.xz’
+
+     0K .......... .......... .......... .....                100% 2.68M=0.01s
+
+2025-09-04 16:47:33 (2.68 MB/s) - ‘instance2.cnf.xz’ saved [36384/36384]
+
++ wait 3379719
++ xz -d instance2.cnf.xz
++ uncompressed_file2=instance2.cnf
++ instance2_hash=02066c116dbacc40ec5cca2067db26c0
++ wait
+++ srun --cpus-per-task=16 --mem=256 --cpu-bind=sockets bash ./run_solver.sh 04342e5989111c659ac350eee11f492e /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance1.cnf 256 5000
+++ srun --cpus-per-task=16 --mem=256 --cpu-bind=sockets bash ./run_solver.sh 04342e5989111c659ac350eee11f492e /storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical instance2.cnf 256 5000
++ output1=CRASHED,0.000792
++ echo CRASHED,0.000792,04342e5989111c659ac350eee11f492e,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ output2=CRASHED,0.000639
++ echo CRASHED,0.000639,04342e5989111c659ac350eee11f492e,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/CaDiCal/cadical
++ rm -f instance1.cnf.xz instance1.cnf instance2.cnf.xz instance2.cnf
++ true
++ IFS=
++ read -r instance1
++ break
++ for current_cores in "${cores_array[@]}"
++ for current_mem in "${mem_array[@]}"
+++ python ../src/utils/environment.py 32 32
+slurmstepd-kathleencpu13: error: *** JOB 7279754 ON kathleencpu13 CANCELLED AT 2025-09-04T16:47:34 ***
+slurmstepd-kathleencpu07: error: *** JOB 7279752 ON kathleencpu07 CANCELLED AT 2025-09-04T16:47:34 ***

@@ -31,11 +31,18 @@ except Exception as ex:
 # Convert Solver output to dictionary for configurator target algorithm script
 output_str = solver_call.stdout.decode()
 # Optional: Print original output so the solution can be verified by SolutionVerifier
-print(output_str)
 
-status = "TEST"
-
+status = "CRASHED"
+if output_str.find("Maximum CPU time exceeded")>-1:
+    status = "TIMEOUT"
+elif output_str.find("Maximum VSize exceeded")> -1:
+    status = "MEMOUT"
+elif output_str.find("UNSATISFIABLE")> -1:
+    status= "UNSAT"
+elif output_str.find("SATISFIABLE")>-1:
+    status="SAT"
 
 outdir = {"status": status, "quality": re.search(r"total CPU time \(s\): (\d+\.\d+)", output_str).group(1), "solver_call": solver_cmd}
 
-print(outdir)
+print(",".join([status, re.search(r"total CPU time \(s\): (\d+\.\d+)", output_str).group(1)]))
+
