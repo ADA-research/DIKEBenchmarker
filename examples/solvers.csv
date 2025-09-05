@@ -1,0 +1,10 @@
+solver_hash,name,base
+1,hKis,kissat
+2,SBVA-scavel-01,cadical
+3,cadical-scavel-01,cadical
+4,kissat-sc2024,kissat
+5,BreakID-Kissat,kissat
+6,cadical-scavel-02,cadical
+7,SBVA-scavel-02,cadical
+8,hCaD,cadical
+9,hKis,kissat

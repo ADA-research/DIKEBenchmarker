@@ -6,6 +6,8 @@ readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
     "polars>=1.8.0",
+    "py-cpuinfo==9.0.0",
+    "scikit-learn==1.4.1.post1",
 ]
 
 [tool.ruff]
@@ -15,7 +17,7 @@ line-length = 160
 package = true
 
 [dependency-groups]
-dev = ["pytest>=8.3.5", "ruff>=0.12.11", "requests>=2.31.0"]
+dev = ["pytest>=8.3.5", "ruff>=0.12.11", "requests>=2.31.0", ]
 
 [tool.setuptools.packages.find]
 where = ["src"] # This tells setuptools to look in src/

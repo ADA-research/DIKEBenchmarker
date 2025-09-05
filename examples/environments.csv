@@ -1,4 +1,4 @@
-hash, nb_assigned_cores, nb_available_core, assigned_memory, machine_memory, OS, kernel_version, activated_modules, cpu_boost, cpu_freq, cpu_model, L1, L2, L3
+env_hash, nb_assigned_cores, nb_available_core, assigned_memory, machine_memory, OS, kernel_version, activated_modules, cpu_boost, cpu_freq, cpu_model, L1, L2, L3
 5afbb2cfd81d085506a758e097839307,4,64,64,1031671,Linux,5.14.0-362.24.1.el9_3.0.1.x86_64,;Currently Loaded Modules:;  1) GCCcore/12.2.0   2) numactl/2.0.16-GCCcore-12.2.0;; ;;,2.8000 GHz,enabled,AuthenticAMD,AMD EPYC 7543 32-Core Processor,4194304,33554432,524288
 f445c32345a47e48d042506d11691c51,4,64,32,1031671,Linux,5.14.0-362.24.1.el9_3.0.1.x86_64,;Currently Loaded Modules:;  1) GCCcore/12.2.0   2) numactl/2.0.16-GCCcore-12.2.0;; ;;,2.8000 GHz,enabled,AuthenticAMD,AMD EPYC 7543 32-Core Processor,4194304,33554432,524288
 200864dcaabf71517af7a4e4a2e32ee5,4,64,32,1031670,Linux,5.14.0-362.24.1.el9_3.0.1.x86_64,;Currently Loaded Modules:;  1) GCCcore/12.2.0   2) numactl/2.0.16-GCCcore-12.2.0;; ;;,3.3860 GHz,enabled,AuthenticAMD,AMD EPYC 7543 32-Core Processor,4194304,33554432,524288
