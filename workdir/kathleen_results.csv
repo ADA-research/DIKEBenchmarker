@@ -123,3 +123,5 @@ TIMEOUT,5000.07,2e87fd2e67ae5c64d1ca60da1bd49e69,00d1fe07ab948b348bb3fb423b1ef40
 UNSAT,3.46706,d459548c907139a76592864e8b9527e0,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/hCaD/cadical
 TIMEOUT,5000.09,6a2b2a09be8444a6c4589834bb625a4f,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/cadical-scavel-01/cadical
 UNSAT,7.51127,df66d44b85010d8359e515176295d0cd,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/cadical-scavel-01/cadical
+TIMEOUT,5000.04,2e87fd2e67ae5c64d1ca60da1bd49e69,00d1fe07ab948b348bb3fb423b1ef40d,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/BreakID-Kissat/kissat
+UNSAT,6.69158,d459548c907139a76592864e8b9527e0,02066c116dbacc40ec5cca2067db26c0,,/storage/work/anastacio/SustainableCompetition/solvers/sat/main_2024/BreakID-Kissat/kissat
