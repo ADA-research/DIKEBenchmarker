@@ -5,7 +5,7 @@ import polars as pl
 from sustainablecompetition.benchmarkatoms import Job
 from sustainablecompetition.benchmarkingmethods.trivial_benchmarker import TrivialBenchmarker
 from sustainablecompetition.benchmarkingmethods.variance_benchmarker import VarianceBenchmarker
-from sustainablecompetition.dataadapters.competition_dataadapter import CompetitionDataAdapter
+from sustainablecompetition.dataadaptors.competition_dataadaptor import CompetitionDataAdaptor
 
 
 NJOBS = 50
@@ -20,7 +20,7 @@ builders = [
     lambda: VarianceBenchmarker(
         BENCHMARK_IDS,
         SOLVER_ID,
-        CompetitionDataAdapter(pl.DataFrame({"hash": BENCHMARK_IDS, **{str(solver_id): [int(solver_id)] * NJOBS for solver_id in range(NSOLVERS)}})),
+        CompetitionDataAdaptor(pl.DataFrame({"hash": BENCHMARK_IDS, **{str(solver_id): [int(solver_id)] * NJOBS for solver_id in range(NSOLVERS)}})),
     ),
 ]
 
