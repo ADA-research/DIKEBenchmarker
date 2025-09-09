@@ -11,7 +11,7 @@ import polars as pl
 from sustainablecompetition.controller import Controller
 from sustainablecompetition.infrastructureadaptors.virtual_runner import VirtualRunner
 from sustainablecompetition.benchmarkingmethods.trivial_benchmarker import TrivialBenchmarker
-from sustainablecompetition.resultconsumers.echo_consumer import EchoConsumer
+from sustainablecompetition.resultconsumers.lambda_consumer import LambdaConsumer
 from sustainablecompetition.dataadaptors.competition_dataadaptor import CompetitionDataAdaptor
 
 logger = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ async def main():
     benchmarks = df.select("hash").to_series().to_list()
     columns = df.columns
     method = TrivialBenchmarker(benchmarks, columns[1])
-    consumer = EchoConsumer()
+    consumer = LambdaConsumer(print)
     controller = Controller(method, runner, njobs=1, consumers=[consumer])
     await controller.run()
 

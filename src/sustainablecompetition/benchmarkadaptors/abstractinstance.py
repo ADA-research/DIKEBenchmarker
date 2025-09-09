@@ -1,10 +1,10 @@
-"""Abstract Instance Adapter"""
+"""Abstract Instance Adaptor"""
 
 from abc import ABC, abstractmethod
 
 
-class AbstractInstanceAdapter(ABC):
-    """Interface for Instance Adapters"""
+class AbstractInstanceAdaptor(ABC):
+    """Interface for Instance Adaptors"""
 
     @abstractmethod
     def get_path(self, instance_id: str) -> str:
