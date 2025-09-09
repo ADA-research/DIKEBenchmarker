@@ -1,4 +1,5 @@
 import polars as pl
+from typing import Optional
 
 from sustainablecompetition.dataadaptors.dataadaptor import DataAdaptor
 
@@ -8,7 +9,7 @@ __all__ = ["CsvDataAdaptor"]
 
 class CsvDataAdaptor(DataAdaptor):
     """
-    Implement the data adaptor for competition data.
+    Implement the data adaptor for csv data.
     """
 
     def __init__(self, environments_path, instances_path, solvers_path, performances_path):
@@ -39,7 +40,12 @@ class CsvDataAdaptor(DataAdaptor):
         # Merge with solvers on solver_hash
         self.data = self.data.join(self.solvers, left_on="solver_hash", right_on="solver_hash", how="left")
 
-    def get_performances(self, benchmark_id: str = None, solver_id: str = None, hardware_id: str = None) -> pl.DataFrame:
+    def get_performances(
+        self,
+        benchmark_id: Optional[str] = None,
+        solver_id: Optional[str] = None,
+        hardware_id: Optional[str] = None,
+        ) -> pl.DataFrame:
         """Get as a data frame all performances for the specified benchmark_id, solver_id and hardware_id.
         If none are specified, returns all the data
 
