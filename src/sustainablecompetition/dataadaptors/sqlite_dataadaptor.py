@@ -7,7 +7,7 @@ import polars as pl
 from sustainablecompetition.dataadaptors.dataadaptor import DataAdaptor
 
 
-__all__ = ["CsvDataAdaptor"]
+__all__ = ["SqlDataAdaptor"]
 
 
 class SqlDataAdaptor(DataAdaptor):
