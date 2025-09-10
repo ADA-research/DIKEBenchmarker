@@ -34,9 +34,9 @@ class CompetitionDataAdaptor(DataAdaptor):
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
             source_name (str): the name of the competition to allow for meta data retrieval
-            database_path (str): the path of the sustainable competiiton database to allow for meta data retrieval
+            database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
-        if df:
+        if df is not None:
             self.data = df.rename({"hash": "inst_hash"})
         elif csv:
             self.data = pl.read_csv(csv).rename({"hash": "inst_hash"})
@@ -53,7 +53,7 @@ class CompetitionDataAdaptor(DataAdaptor):
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
             source_name (str): the name of the competition to allow for meta data retrieval
-            database_path (str): the path of the sustainable competiiton database to allow for meta data retrieval
+            database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
         return cls(df, None, source_name, database_path)
 
@@ -68,7 +68,7 @@ class CompetitionDataAdaptor(DataAdaptor):
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
             source_name (str): the name of the competition to allow for meta data retrieval
-            database_path (str): the path of the sustainable competiiton database to allow for meta data retrieval
+            database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
         return cls(None, competition_data, source_name, database_path)
 
@@ -76,7 +76,7 @@ class CompetitionDataAdaptor(DataAdaptor):
         """pivot data and use our database for getting the environment, instances and solver features
         Args:
             source_name (str): the name of the competition to allow for meta data retrieval
-            database_path (str): the path of the sustainable competiiton database to allow for meta data retrieval
+            database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
         # - comp_name is the competition name
         # - get_competition_env_hash and get_solver are defined elsewhere
