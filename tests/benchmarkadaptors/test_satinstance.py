@@ -2,6 +2,9 @@ import pathlib
 import os
 import lzma
 
+import pytest
+from requests import HTTPError
+
 from sustainablecompetition.benchmarkadaptors.satinstance import SATInstanceAdaptor
 
 
@@ -17,3 +20,18 @@ def test_get_instance(tmp_path: pathlib.Path):
     with lzma.open(local_path, "rb") as fd:
         size = len(fd.read())
         assert size == INSTANCE_SIZE
+
+
+def test_registry_cache(tmp_path: pathlib.Path):
+    adaptor = SATInstanceAdaptor(tmp_path)
+    local_path = adaptor.get_path(INSTANCE_HASH)
+    assert INSTANCE_HASH in adaptor.registry
+    assert local_path == adaptor.get_path(INSTANCE_HASH)
+
+
+def test_incorrect_id(tmp_path: pathlib.Path):
+    adaptor = SATInstanceAdaptor(tmp_path)
+    with pytest.raises(HTTPError) as e:
+        adaptor.get_path(INSTANCE_HASH * 10)
+        f: HTTPError = e
+        assert f.errno == 404
