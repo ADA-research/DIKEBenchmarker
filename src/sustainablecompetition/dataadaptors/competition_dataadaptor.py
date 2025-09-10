@@ -90,15 +90,18 @@ class CompetitionDataAdaptor(DataAdaptor):
         if database_path and source_name:
             db_adaptor = SqlDataAdaptor(database_path)
             env_hash = db_adaptor.get_competition_env_hash(source_name)
+        else:
+            db_adaptor = None
+            env_hash = None
 
         # Map solver_name to solver_hash
-        if db_adaptor:
+        if db_adaptor is not None:
             df_long = df_long.with_columns(pl.col("solver_name").map_elements(lambda name: db_adaptor.get_solver(source_name, name)).alias("solver_hash"))
         else:
             df_long = df_long.with_columns(pl.col("solver_name").map_elements(lambda name: f"unknown_solver_{name}").alias("solver_hash"))
 
         # Set env_hash
-        if not env_hash:
+        if env_hash is None:
             env_hash = "unknown_env"
 
         # Determine status
@@ -108,7 +111,7 @@ class CompetitionDataAdaptor(DataAdaptor):
         self.perfs = df_long.select(["status", "perf", "inst_hash", "env_hash", "solver_hash"])
 
         # Load features using db_adaptor
-        if db_adaptor:
+        if db_adaptor is not None:
             self.environments = db_adaptor.get_environments(env_ids=[env_hash])
             self.instances = db_adaptor.get_instances(inst_ids=list(self.perfs["inst_hash"]))
             self.solvers = db_adaptor.get_solvers(solver_ids=list(self.perfs["solver_hash"]))
