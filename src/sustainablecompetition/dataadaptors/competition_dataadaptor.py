@@ -78,13 +78,8 @@ class CompetitionDataAdaptor(DataAdaptor):
             source_name (str): the name of the competition to allow for meta data retrieval
             database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
-        # - comp_name is the competition name
-        # - get_competition_env_hash and get_solver are defined elsewhere
-
         # Melt the DataFrame to long format
-        df_long = self.data.unpivot(
-            index=["inst_hash"], on=[col for col in self.data.columns if col != "inst_hash"], variable_name="solver_name", value_name="perf"
-        )
+        df_long = self.data.unpivot(index="inst_hash", variable_name="solver_name", value_name="perf")
 
         # Connect to database
         if database_path and source_name:
@@ -95,17 +90,24 @@ class CompetitionDataAdaptor(DataAdaptor):
             env_hash = None
 
         # Map solver_name to solver_hash
-        if db_adaptor is not None:
-            df_long = df_long.with_columns(pl.col("solver_name").map_elements(lambda name: db_adaptor.get_solver(source_name, name)).alias("solver_hash"))
+        if db_adaptor:
+            df_long = df_long.with_columns(
+                pl.col("solver_name")
+                .map_elements(lambda name: db_adaptor.get_competition_solver_hash(source_name, name), return_dtype=pl.String)
+                .alias("solver_hash")
+            )
         else:
-            df_long = df_long.with_columns(pl.col("solver_name").map_elements(lambda name: f"unknown_solver_{name}").alias("solver_hash"))
+            df_long = df_long.with_columns(
+                pl.col("solver_name").map_elements(lambda name: f"unknown_solver_{name}", return_dtype=pl.String).alias("solver_hash")
+            )
 
         # Set env_hash
         if env_hash is None:
             env_hash = "unknown_env"
+        df_long = df_long.with_columns(env_hash=pl.lit(env_hash))
 
         # Determine status
-        df_long = df_long.with_columns(pl.when(pl.col("perf") == 10000).then("TIMEOUT").otherwise("COMPLETE").alias("status"))
+        df_long = df_long.with_columns(pl.when(pl.col("perf") == 10000).then(pl.lit("TIMEOUT")).otherwise(pl.lit("COMPLETE")).alias("status"))
 
         # format and set perf dataframe
         self.perfs = df_long.select(["status", "perf", "inst_hash", "env_hash", "solver_hash"])
@@ -115,8 +117,18 @@ class CompetitionDataAdaptor(DataAdaptor):
             self.environments = db_adaptor.get_environments(env_ids=[env_hash])
             self.instances = db_adaptor.get_instances(inst_ids=list(self.perfs["inst_hash"]))
             self.solvers = db_adaptor.get_solvers(solver_ids=list(self.perfs["solver_hash"]))
+            # Merge perf with environments on env_hash
+            self.data = self.perfs.join(self.environments, left_on="env_hash", right_on="env_hash", how="left")
 
-    def get_performances(self, benchmark_id: str, solver_id: Optional[str] = None, hardware_id: Optional[str] = None) -> pl.DataFrame:
+            # Merge with instances on inst_hash
+            self.data = self.data.join(self.instances, left_on="inst_hash", right_on="inst_hash", how="left")
+
+            # Merge with solvers on solver_hash
+            self.data = self.data.join(self.solvers, left_on="solver_hash", right_on="solver_hash", how="left")
+        else:
+            self.data = self.perfs
+
+    def get_performances(self, benchmark_id: Optional[str] = None, solver_id: Optional[str] = None, hardware_id: Optional[str] = None) -> pl.DataFrame:
         """
         Get the performance of a specific benchmark instance.
         Hardware id is ignored as this data adaptor is for a single hardware configuration. (TODO: find a better way to handle this)
@@ -133,6 +145,6 @@ class CompetitionDataAdaptor(DataAdaptor):
             result = result.filter(pl.col("solver_hash") == solver_id)
 
         if hardware_id:
-            result = result.filter(pl.col("hardware_hash") == hardware_id)
+            result = result.filter(pl.col("env_hash") == hardware_id)
 
         return result

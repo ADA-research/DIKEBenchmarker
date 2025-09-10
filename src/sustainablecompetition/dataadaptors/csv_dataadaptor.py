@@ -30,9 +30,9 @@ class CsvDataAdaptor(DataAdaptor):
         self.instances = pl.read_csv(instances_path)
         self.solvers = pl.read_csv(solvers_path)
         # Load performances
-        self.perf = pl.read_csv(performances_path)
+        self.perfs = pl.read_csv(performances_path)
         # Merge perf with environments on env_hash
-        self.data = self.perf.join(self.environments, left_on="env_hash", right_on="env_hash", how="left")
+        self.data = self.perfs.join(self.environments, left_on="env_hash", right_on="env_hash", how="left")
 
         # Merge with instances on inst_hash
         self.data = self.data.join(self.instances, left_on="inst_hash", right_on="inst_hash", how="left")

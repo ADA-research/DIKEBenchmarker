@@ -1,0 +1,14 @@
+solver_hash,solver_name,solver_base,version
+adf32f950ddeaf523c254c5a787ba7ca,AMSAT,minisat,main2024
+5dd432077aa812edf911be6a2f093ad4,AMSAT_RGC,minisat,main2024
+39cd9b0d44af155a2e407ab3505b3055,CaDiCaL,cadical,main2024
+c43a8218c7e1ad786e8d51fa427f2e39,Cadical_ESA,cadical,main2024
+2079e62c1e29a5d6f4f75f0c5487b5d2,IsaSAT,isasat,main2024
+857a16e9ba4da28e7b6e5c5b1e8442df,Kissat_MAB-DC,kissat,main2024
+289003e7b2167844c26567ac4a3b6447,Kissat_MAB_Binary,kissat,main2024
+40efffc4a278fc0bac071387e4a381be,Kissat_MAB_ESA,kissat,main2024
+9899153c8b626b11dd2606b4f825609b,hCaD-bva,cadical,main2024
+f3b81d642abc7fc313d402bbd197332c,hCaD-pbva,cadical,main2024
+295283ff152a84ad15fc037f26218e67,hKis-bva,kissat,main2024
+ad74002db58481fc6469a48e63fed176,hKis-pbva,kissat,main2024
+ddf89f00900b00844bcbd2f3cb8db25b,kissat-sc2024,kissat,main2024
