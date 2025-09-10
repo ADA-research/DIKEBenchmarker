@@ -1,0 +1,19 @@
+import pathlib
+import os
+import lzma
+
+from sustainablecompetition.benchmarkadaptors.satinstance import SATInstanceAdaptor
+
+
+INSTANCE_HASH = "001304ba2e4e8adbd179aa3d8acb697b"
+INSTANCE_SIZE = 15136 + 80
+
+
+def test_get_instance(tmp_path: pathlib.Path):
+    adaptor = SATInstanceAdaptor(tmp_path)
+    local_path = adaptor.get_path(INSTANCE_HASH)
+    assert os.path.isfile(local_path)
+
+    with lzma.open(local_path, "rb") as fd:
+        size = len(fd.read())
+        assert size == INSTANCE_SIZE
