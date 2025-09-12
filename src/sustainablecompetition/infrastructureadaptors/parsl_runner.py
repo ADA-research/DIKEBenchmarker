@@ -75,6 +75,10 @@ class ParslRunner(AbstractRunner):
         self.logsdir = f"{self.rootdir}/logs"
         os.makedirs(self.logsdir, exist_ok=True)
 
+    def __del__(self):
+        parsl.dfk().cleanup()
+        parsl.clear()
+
     def submit(self, job: Job):
         """
         Submit a function to the process pool.
