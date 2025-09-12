@@ -32,9 +32,12 @@ def save_environment(nb_assigned_cores, assigned_memory, csv_file="run_environme
         for label in [
             "arch_string_raw",
             "vendor_id_raw",
-            "brand_raw",]]+[
-        str(cpu_info.get(label, ''))
-        for label in ["l1_instruction_cache_size",
+            "brand_raw",
+        ]
+    ] + [
+        str(cpu_info.get(label, ""))
+        for label in [
+            "l1_instruction_cache_size",
             "l1_data_cache_size",
             "l2_cache_size",
             "l2_cache_line_size",
@@ -42,7 +45,6 @@ def save_environment(nb_assigned_cores, assigned_memory, csv_file="run_environme
             "l3_cache_size",
         ]
     ]
-    
 
     # Collect memory information using psutil
     mem = psutil.virtual_memory()
@@ -51,7 +53,7 @@ def save_environment(nb_assigned_cores, assigned_memory, csv_file="run_environme
     # Collect OS information
     uname = psutil.os.uname()
     psutil_list = [str(v) for v in [psutil.cpu_count(logical=False), machine_memory, uname.sysname, uname.release] + list(psutil.cpu_freq(percpu=False))[1:]]
-    
+
     # Generate environment string
     env_string = f"{nb_assigned_cores},{assigned_memory}," + ",".join(psutil_list + cpu_info_list)
 
