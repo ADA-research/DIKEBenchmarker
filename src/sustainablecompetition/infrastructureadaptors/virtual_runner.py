@@ -33,7 +33,7 @@ class VirtualRunner(AbstractRunner):
         job = self.jobs[extid]
         instance = job.benchmark_id
         solver = job.solver_id
-        runtime = self.runtimes.get_performances(instance, solver).item()
+        runtime = self.runtimes.get_performances(instance, solver)["perf"][0]
         job.set_finished()
         return Result(job, runtime, 0)
 

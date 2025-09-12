@@ -16,9 +16,6 @@ class AbstractExecutionWrapper(ABC):
     Abstract base class for execution wrappers.
     """
 
-    def __init__(self, root: str):
-        self.root = root
-
     @abstractmethod
     def set_resource_limits(self, cputimelimit: int = None, walltimelimit: int = None, memorylimit: int = None):
         """
@@ -67,9 +64,7 @@ class RunSolverWrapper(AbstractExecutionWrapper):
     A class to manage the "runsolver" execution wrapper.
     """
 
-    def __init__(self, root: str):
-        super().__init__(root)
-        binpath = os.path.join(self.root, "external", "runsolver")
+    def __init__(self, binpath: str = "./external/runsolver"):
         if not os.path.isfile(binpath) and not os.access(binpath, os.X_OK):
             raise FileNotFoundError(f"runsolver binary not found or not executable at {binpath}")
         self.cmd = [binpath]
@@ -85,7 +80,7 @@ class RunSolverWrapper(AbstractExecutionWrapper):
         if cputimelimit is not None:
             self.cmd += ["--cpu-limit", str(cputimelimit)]
 
-    def set_outputs(self, tooloutput: str, solveroutput: str, headlimit: int = 10, taillimit: int = 10):
+    def set_outputs(self, tooloutput: str, solveroutput: str, headlimit: int = 10, taillimit: int = 20):
         """
         Set the output file for the solver's output.
         Parameters:
@@ -96,7 +91,7 @@ class RunSolverWrapper(AbstractExecutionWrapper):
         """
         self.cmd += ["--var", tooloutput]
         self.cmd += ["--solver-data", solveroutput]
-        self.cmd += ["--output-limit", headlimit, taillimit]
+        self.cmd += ["--output-limit", ",".join([str(headlimit), str(taillimit)])]
 
     def get_command(self) -> List[str]:
         """

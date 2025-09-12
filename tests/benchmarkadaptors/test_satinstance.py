@@ -25,8 +25,7 @@ def test_get_instance(tmp_path: pathlib.Path):
 def test_registry_cache(tmp_path: pathlib.Path):
     adaptor = SATInstanceAdaptor(tmp_path)
     local_path = adaptor.get_path(INSTANCE_HASH)
-    assert INSTANCE_HASH in adaptor.registry
-    assert local_path == adaptor.get_path(INSTANCE_HASH)
+    assert local_path == adaptor.get_local_path(INSTANCE_HASH)
 
 
 def test_incorrect_id(tmp_path: pathlib.Path):

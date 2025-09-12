@@ -29,6 +29,6 @@
 
 you can fetch the path of the database with :
 
-````
+```
 db_path = importlib.resources.files("sustainablecompetition.data").joinpath("sustainablecompetition.db")
 ```

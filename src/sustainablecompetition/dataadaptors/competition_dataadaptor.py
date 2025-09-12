@@ -97,9 +97,7 @@ class CompetitionDataAdaptor(DataAdaptor):
                 .alias("solver_hash")
             )
         else:
-            df_long = df_long.with_columns(
-                pl.col("solver_name").map_elements(lambda name: f"unknown_solver_{name}", return_dtype=pl.String).alias("solver_hash")
-            )
+            df_long = df_long.with_columns(pl.col("solver_name").map_elements(lambda name: f"{name}", return_dtype=pl.String).alias("solver_hash"))
 
         # Set env_hash
         if env_hash is None:
