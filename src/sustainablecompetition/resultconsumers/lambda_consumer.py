@@ -4,12 +4,12 @@ Lambda consumer for benchmarking results.
 
 from typing import Callable
 from sustainablecompetition.benchmarkatoms import Result
-from sustainablecompetition.resultconsumers.resultconsumer import ResultConsumer
+from sustainablecompetition.resultconsumers.abstract_consumer import AbstractConsumer
 
 __all__ = ["LambdaConsumer"]
 
 
-class LambdaConsumer(ResultConsumer):
+class LambdaConsumer(AbstractConsumer):
     """Applies a given function to the result."""
 
     def __init__(self, callback: Callable[[Result], None]):

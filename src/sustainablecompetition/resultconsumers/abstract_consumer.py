@@ -1,13 +1,18 @@
+"""
+Abstract consumer for benchmarking results.
+"""
+
 from abc import ABC, abstractmethod
 
 from sustainablecompetition.benchmarkatoms import Result
 
 
-__all__ = ["ResultConsumer"]
+__all__ = ["AbstractConsumer"]
 
 
-class ResultConsumer(ABC):
-    """Consumes the result of the benchmarking process.
+class AbstractConsumer(ABC):
+    """
+    Consumes the result of the benchmarking process.
     It is guaranteed that results are processed in order.
     """
 
@@ -18,4 +23,3 @@ class ResultConsumer(ABC):
         Args:
             result (Result): the last result obtained.
         """
-        pass

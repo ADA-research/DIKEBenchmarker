@@ -42,29 +42,22 @@ def make_local_threads(n: int = 8) -> Config:
 
 def make_slurm_config(
     partition: str = "compute",
-    account: str | None = None,  # e.g., "your_allocation"
-    nodes_per_block: int = 1,
-    cores_per_node: int = 32,  # set to your node’s core count
+    account: str | None = None,  # your account name or None to skip
+    jobname: str = "benchmark_job",
+    max_workers_per_node: int = 32,
     mem_per_node: int | None = None,  # in MB; or leave None to skip
+    nodes_per_block: int = 1,
     init_blocks: int = 0,  # start with zero and grow
     min_blocks: int = 0,
     max_blocks: int = 10,
     walltime: str = "02:00:00",
-    worker_init: str = """
-# Load your environment here:
-module purge
-module load python/3.11
-# If using conda/mamba:
-# source ~/miniconda3/etc/profile.d/conda.sh
-# conda activate your-parsl-env
-""".strip(),
+    worker_init: str = """# Load your environment here""",
 ) -> Config:
     """
-    SLURM config that scales from 0..max_blocks blocks.
-    Each block is an allocation of `nodes_per_block` nodes;
-    on each node Parsl will start multiple workers.
+    Create a Parsl config for SLURM-managed clusters.
+    Scales from 0 to max_blocks blocks > allocates 'nodes_per_block' nodes > starts 'max_workers_per_node' workers per node.
     """
-    scheduler_opts = []
+    scheduler_opts = [f"#SBATCH --job-name={jobname}"]
     if account:
         scheduler_opts.append(f"#SBATCH --account={account}")
     if mem_per_node:
@@ -73,11 +66,11 @@ module load python/3.11
     return Config(
         executors=[
             HighThroughputExecutor(
-                label="slurm_htex",
+                label=f"{jobname}",
                 address=address_by_hostname(),
                 # Worker layout on each node:
                 cores_per_worker=1,  # one worker per core by default
-                max_workers=cores_per_node,  # cap per node
+                max_workers_per_node=max_workers_per_node,
                 worker_debug=True,
                 provider=SlurmProvider(
                     partition=partition,
@@ -95,21 +88,3 @@ module load python/3.11
         ],
         strategy="simple",  # allow Parsl to scale blocks up/down
     )
-
-
-# Example usage:
-# import parsl
-# cfg = make_slurm_config(
-#     partition="cpu",
-#     account="project_xy",
-#     cores_per_node=64,
-#     max_blocks=20,
-#     walltime="04:00:00",
-#     worker_init=\"""\
-# module purge
-# module load python/3.11 gcc/12.2 openmpi/4.1
-# source ~/miniconda3/etc/profile.d/conda.sh
-# conda activate parsl-env
-# \""",
-# )
-# parsl.load(cfg)
