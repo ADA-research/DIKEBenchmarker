@@ -1,12 +1,12 @@
-
 from sklearn.ensemble import RandomForestRegressor
 from sustainablecompetition.performancemodels.abstractperformancemodel import AbstractPerformanceModel
 
 __all__ = ["RandomForestPerformanceModel"]
 
+
 class RandomForestPerformanceModel(AbstractPerformanceModel):
-    """A performance model learning from 4 input files (currently, corresponding to the 4 tables in our future database)
-    """
+    """A performance model learning from 4 input files (currently, corresponding to the 4 tables in our future database)"""
+
     def __init__(self):
         """Initialises the model
 

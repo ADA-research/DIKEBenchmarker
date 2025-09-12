@@ -127,7 +127,8 @@ class CompetitionDataAdaptor(DataAdaptor):
             self.data = self.perfs
 
     def get_performances(
-        self, inst_hash: Optional[str] = None, solver_hash: Optional[str] = None, env_hash: Optional[str] = None, filter: Optional[str] = None) -> pl.DataFrame:
+        self, inst_hash: Optional[str] = None, solver_hash: Optional[str] = None, env_hash: Optional[str] = None, filter: Optional[str] = None
+    ) -> pl.DataFrame:
         """
         Get the performance of a specific benchmark instance.
         Hardware id is ignored as this data adaptor is for a single hardware configuration. (TODO: find a better way to handle this)

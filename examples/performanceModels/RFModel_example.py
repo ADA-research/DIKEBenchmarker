@@ -10,7 +10,7 @@ db_path = importlib.resources.files("sustainablecompetition.data").joinpath("sus
 db_adaptor = SqlDataAdaptor(db_path)
 
 # gathering my data
-main2024_data = db_adaptor.get_performances(env_hash=db_adaptor.get_competition_env_hash("main2024"),filter="no_env_features")
+main2024_data = db_adaptor.get_performances(env_hash=db_adaptor.get_competition_env_hash("main2024"), filter="no_env_features")
 solvers = db_adaptor.get_competition_solver_hash(comp_name="main2024")
 kathleen_data = db_adaptor.get_performances(solver_hash=solvers[0], env_hash="597c479a9bc71e9bdc080f1d491b0ac4", filter="no_env_features")
 if len(solvers) > 1:
@@ -18,7 +18,6 @@ if len(solvers) > 1:
         solver_data = db_adaptor.get_performances(solver_hash=solver, env_hash="597c479a9bc71e9bdc080f1d491b0ac4", filter="no_env_features")
         if not solver_data.is_empty():
             kathleen_data = pl.concat([kathleen_data, solver_data], how="align")
-
 
 
 # Drop hash columns and status, keep only features and perf

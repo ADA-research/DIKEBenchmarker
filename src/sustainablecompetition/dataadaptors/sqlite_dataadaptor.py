@@ -23,7 +23,8 @@ class SqlDataAdaptor(DataAdaptor):
         self.database_path = database_path
 
     def get_performances(
-        self, inst_hash: Optional[str] = None, solver_hash: Optional[str] = None, env_hash: Optional[str] = None, filter: Optional[str] = None) -> pl.DataFrame:
+        self, inst_hash: Optional[str] = None, solver_hash: Optional[str] = None, env_hash: Optional[str] = None, filter: Optional[str] = None
+    ) -> pl.DataFrame:
         """
         Get as a DataFrame all performances for the specified inst_hash, solver_hash, and env_hash.
         If none are specified, returns all the data (not recommended).
@@ -39,7 +40,7 @@ class SqlDataAdaptor(DataAdaptor):
         """
         # Connect to the SQLite database (replace 'your_database.db' with your actual database file)
         conn = sqlite3.connect(self.database_path)
-        
+
         try:
             # Base query
             query = (
