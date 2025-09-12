@@ -2,6 +2,8 @@
 from sklearn.ensemble import RandomForestRegressor
 from sustainablecompetition.performancemodels.abstractperformancemodel import AbstractPerformanceModel
 
+__all__ = ["RandomForestPerformanceModel"]
+
 class RandomForestPerformanceModel(AbstractPerformanceModel):
     """A performance model learning from 4 input files (currently, corresponding to the 4 tables in our future database)
     """
@@ -9,7 +11,7 @@ class RandomForestPerformanceModel(AbstractPerformanceModel):
         """Initialises the model
 
         Args:
-            should take the RF parameters
+            TODO should take the RF parameters
 
         """
         self.model = RandomForestRegressor(n_estimators=100, random_state=42)
