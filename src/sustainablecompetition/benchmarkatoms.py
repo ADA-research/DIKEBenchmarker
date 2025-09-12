@@ -133,4 +133,4 @@ class Result:
         self.memory = memory
 
     def __repr__(self):
-        return f"BenchmarkResult(cputime={self.runtime}, memory={self.memory})"
+        return f"BenchmarkResult(inst_id={self.job.benchmark_id}, solver_id={self.job.solver_id}, perf={self.runtime})"

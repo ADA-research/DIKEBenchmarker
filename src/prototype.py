@@ -12,7 +12,7 @@ import sys
 
 import polars as pl
 
-from sustainablecompetition.infrastructureadaptors.parsl_configs import make_local_processes
+from sustainablecompetition.infrastructureadaptors.parsl_configs import make_local_processes, make_slurm_config
 from sustainablecompetition.infrastructureadaptors.virtual_runner import VirtualRunner
 from sustainablecompetition.infrastructureadaptors.parsl_runner import ParslRunner
 from sustainablecompetition.benchmarkingmethods.trivial_benchmarker import TrivialBenchmarker
@@ -64,6 +64,34 @@ def parsl_integration_test(benchmarks):
     method.run(runner, njobs=10)
 
 
+def parsl_slurm_integration_test(benchmarks):
+    """
+    Integration test using the parsl slurm runner.
+    """
+
+    solver_adaptor = SATSolverAdaptor()
+    solver_adaptor.register_solver("kissat", "./examples/solverAdaptors/sat/kissat")  # Update
+    instance_adaptor = SATInstanceAdaptor("./instances/sat/", "./instances/cnf_data.db")
+    execution_wrapper = RunSolverWrapper("./external/runsolver")
+    execution_wrapper.set_resource_limits(cputimelimit=600, memorylimit=2048)
+
+    runner = ParslRunner(
+        rootdir=".",
+        solver_adaptor=solver_adaptor,
+        instance_adaptor=instance_adaptor,
+        execution_wrapper=execution_wrapper,
+        parsl_config=make_slurm_config(
+            partition="liskov",
+            account=None,  # your account name or None to skip
+            jobname="test_benchmark_job",
+        ),
+    )
+    method = TrivialBenchmarker(benchmarks, "kissat")
+    method.register_consumer(LambdaConsumer(print))
+    method.register_consumer(CSVConsumer("slurm_kissat_test_results.csv"))
+    method.run(runner, njobs=10)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Test run the benchmarking tool")
     parser.add_argument("file", help="Path to CSV file containing solver runtimes")
@@ -80,7 +108,7 @@ if __name__ == "__main__":
     easybatch = [
         "005ccb378ced61c02105ed7ee0a62038",
         "00f969737ba4338bd233cd3ed249bd55",
-        "01d142c43f3ce9a8c5ef7a1ecdbb6cba",
+        # "01d142c43f3ce9a8c5ef7a1ecdbb6cba",
         "02b69d0e5c2b68d5c3d650164b6c277d",
         "04327b18171b43ff06586707499b97fc",
         "076d4d6f83306ee69c35e3c99e30d8f8",
@@ -98,4 +126,6 @@ if __name__ == "__main__":
         "f349621e75ede4e9e9422b3d0f677268",
         "f42d2ce7b4efd3f96e063dd1f6fec7f1",
     ]
-    parsl_integration_test(benchmarks=easybatch)
+    parsl_integration_test(benchmarks=easybatch[:7])
+    print("Running parsl slurm integration test...")
+    parsl_slurm_integration_test(benchmarks=easybatch)

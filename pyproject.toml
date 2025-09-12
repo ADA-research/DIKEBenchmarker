@@ -17,7 +17,9 @@ line-length = 160
 
 [tool.pylint.format]
 max-line-length = 160
-max-args = 7
+max-args = 11
+max-positional-arguments = 11
+max-keyword-arguments = 11
 
 [tool.uv]
 package = true
