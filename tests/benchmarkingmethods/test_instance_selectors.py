@@ -25,6 +25,7 @@ INSTANCE_SELECTOR_NAMES = ["VarianceInstanceSelector", "RandomInstanceSelector"]
 def test_run_all_jobs(instance_selector_builder):
     adaptor = build_adaptor()
     benchmark_ids = adaptor.get_performances().get_column("inst_hash").to_list()
+    assert None not in benchmark_ids, "Test setup error: benchmark ids contain None"
     jobs_left = len(benchmark_ids)
     solver_id = adaptor.get_competition_solver_hash("main2024")
     selector = instance_selector_builder(benchmark_ids, solver_id, adaptor)
