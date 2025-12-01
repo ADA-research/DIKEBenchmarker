@@ -3,6 +3,7 @@ import pytest
 
 
 from sustainablecompetition.benchmarkatoms import Job
+from sustainablecompetition.benchmarkingmethods.instance_selectors.discrimination_instance_selector import DiscriminationInstanceSelector
 from sustainablecompetition.benchmarkingmethods.instance_selectors.random_instance_selector import RandomInstanceSelector
 from sustainablecompetition.benchmarkingmethods.instance_selectors.variance_instance_selector import VarianceInstanceSelector
 from sustainablecompetition.dataadaptors.sqlite_dataadaptor import SqlDataAdaptor
@@ -17,8 +18,9 @@ def build_adaptor() -> SqlDataAdaptor:
 INSTANCE_SELECTORS = [
     lambda bench_ids, solver_id, adap: VarianceInstanceSelector(bench_ids, solver_id, adap),
     lambda bench_ids, solver_id, adap: RandomInstanceSelector(bench_ids, solver_id),
+    lambda bench_ids, solver_id, adap: DiscriminationInstanceSelector(bench_ids, solver_id),
 ]
-INSTANCE_SELECTOR_NAMES = ["VarianceInstanceSelector", "RandomInstanceSelector"]
+INSTANCE_SELECTOR_NAMES = ["VarianceInstanceSelector", "RandomInstanceSelector", "DiscriminationInstanceSelector"]
 
 
 @pytest.mark.parametrize("instance_selector_builder", INSTANCE_SELECTORS, ids=INSTANCE_SELECTOR_NAMES)
