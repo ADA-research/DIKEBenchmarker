@@ -118,7 +118,8 @@ if __name__ == "__main__":
     parser_slurm.add_argument("machine", help="machine/partition name for SLURM")
     parser_slurm.add_argument("--account", help="Account name for SLURM", default=None)
     parser_slurm.add_argument("--tasks-per-node", type=int, help="Number of tasks per node", default=32)
-    parser_slurm.add_argument("--jobname", help="Job name for SLURM", default="benchmark_job")
+    parser_slurm.add_argument("--jobname", help="Job name for SLURM", default="benchmark")
+    parser_slurm.add_argument("--file", help="Path to CSV containing benchmark hashes", default=None)
 
     args = parser.parse_args()
 
@@ -133,6 +134,14 @@ if __name__ == "__main__":
         parsl_local_integration_test(benchmarks=short_easybatch)
     elif args.command == "slurm":
         print("Running parsl slurm integration test...")
+        if args.file:
+            if not os.path.isfile(args.file):
+                print(f"Error: File '{args.file}' does not exist.")
+                sys.exit(1)
+            df = pl.read_csv(args.file)
+            benchmarks = df.select("hash").to_series().to_list()
+        else:
+            benchmarks = long_easybatch
         parsl_slurm_integration_test(
-            benchmarks=long_easybatch, machine=args.machine, account=args.account, tasks_per_node=args.tasks_per_node, jobname=args.jobname
+            benchmarks=benchmarks, machine=args.machine, account=args.account, tasks_per_node=args.tasks_per_node, jobname=args.jobname
         )
