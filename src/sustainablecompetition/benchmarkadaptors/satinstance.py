@@ -45,7 +45,7 @@ class SATInstanceAdaptor(AbstractInstanceAdaptor):
             result = db.query(hashes=[instance_id], resolve=["local"], collapse="min")
             if len(result) == 0:
                 return None
-            path = result.loc[0, "local"]
+            path = result["local"][0]
             if not os.path.isfile(path):
                 db.reset_values("local", values=[path], hashes=[instance_id])
                 return None
