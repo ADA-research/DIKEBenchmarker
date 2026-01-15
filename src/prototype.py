@@ -86,10 +86,10 @@ def parsl_local_integration_test(benchmarks):
         method.run(runner, njobs=10)
 
 
-def parsl_slurm_integration_test(benchmarks, machine: str, account: str = None, tasks_per_node: int = 32, jobname: str = "benchmark_job"):
+def parsl_slurm_integration_test(benchmarks, solvers, machine: str, account: str = None, tasks_per_node: int = 32, jobname: str = "benchmark_job"):
     """Integration test using the parsl slurm runner."""
     solver_adaptor = SolverAdaptor()
-    solver_adaptor.read_registry("./examples/solverAdaptors/sat/solvers1.csv")
+    solver_adaptor.read_registry(solvers)
     instance_adaptor = SATInstanceAdaptor("./instances/sat/", "./instances/cnf_data.db")
     config = make_slurm_config(
         partition=machine,
@@ -119,7 +119,8 @@ if __name__ == "__main__":
     parser_slurm.add_argument("--account", help="Account name for SLURM", default=None)
     parser_slurm.add_argument("--tasks-per-node", type=int, help="Number of tasks per node", default=32)
     parser_slurm.add_argument("--jobname", help="Job name for SLURM", default="benchmark")
-    parser_slurm.add_argument("--file", help="Path to CSV containing benchmark hashes", default=None)
+    parser_slurm.add_argument("--bfile", help="Path to CSV containing benchmark hashes", default=None)
+    parser_slurm.add_argument("--sfile", help="Path to CSV containing solver paths", default=None)
 
     args = parser.parse_args()
 
@@ -134,14 +135,21 @@ if __name__ == "__main__":
         parsl_local_integration_test(benchmarks=short_easybatch)
     elif args.command == "slurm":
         print("Running parsl slurm integration test...")
-        if args.file:
-            if not os.path.isfile(args.file):
-                print(f"Error: File '{args.file}' does not exist.")
+        if args.bfile:
+            if not os.path.isfile(args.bfile):
+                print(f"Error: File '{args.bfile}' does not exist.")
                 sys.exit(1)
             df = pl.read_csv(args.file)
             benchmarks = df.select("hash").to_series().to_list()
         else:
             benchmarks = long_easybatch
+        if args.sfile:
+            if not os.path.isfile(args.sfile):
+                print(f"Error: File '{args.sfile}' does not exist.")
+                sys.exit(1)
+            solvers = args.sfile
+        else:
+            solvers = "./examples/solverAdaptors/sat/solvers1.csv"
         parsl_slurm_integration_test(
-            benchmarks=benchmarks, machine=args.machine, account=args.account, tasks_per_node=args.tasks_per_node, jobname=args.jobname
+            benchmarks=benchmarks, solvers=solvers, machine=args.machine, account=args.account, tasks_per_node=args.tasks_per_node, jobname=args.jobname
         )
