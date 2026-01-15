@@ -21,7 +21,16 @@ from sustainablecompetition.solveradaptors.solveradaptor import SolverAdaptor
 
 
 @bash_app
-def runsolver(serialized_wrapper: dict, serialized_solver: dict, serialized_checker: dict, wrapper_id: str, solver_id: str, checker_id: str, inputs: list[File], outputs: list[File]):
+def runsolver(
+    serialized_wrapper: dict,
+    serialized_solver: dict,
+    serialized_checker: dict,
+    wrapper_id: str,
+    solver_id: str,
+    checker_id: str,
+    inputs: list[File],
+    outputs: list[File],
+):
     """Run the solver with the given input and output files."""
 
     wrapper_bin, solver_bin, instance_file, trimmer_bin, checker_bin, satchecker_bin = inputs
@@ -35,7 +44,9 @@ def runsolver(serialized_wrapper: dict, serialized_solver: dict, serialized_chec
 
     solve_cmd = solver.format_command(solver_id, solver_bin.filepath, cnf, cert_out)
     wrapper_cmd = wrapper.format_command(wrapper_id, wrapper_bin.filepath, solve_cmd, wrapper_out.filepath, solver_out.filepath)
-    proof_checker_cmd = checker.format_command(checker_id, trimmer_bin.filepath, checker_bin.filepath, cnf, cert_out, trimmer_out.filepath, checker_out.filepath)
+    proof_checker_cmd = checker.format_command(
+        checker_id, trimmer_bin.filepath, checker_bin.filepath, cnf, cert_out, trimmer_out.filepath, checker_out.filepath
+    )
     model_checker_cmd = checker.format_command("satchecker", satchecker_bin.filepath, "", cnf, solver_out.filepath, "", checker_out.filepath)
 
     return f"""
@@ -126,9 +137,7 @@ class ParslRunner(AbstractRunner):
                 File(self.checker_adaptor.get_binaries(job.checker_id)[1]),
                 File(self.checker_adaptor.get_binaries("satchecker")[0]),
             ],
-            outputs=[
-                File(output_root + ext) for ext in [".out", ".err",".wrapper", ".solver", ".model", ".trimmer", ".checker"]
-            ],
+            outputs=[File(output_root + ext) for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]],
         )
         self.futures.append(runsolver_future)
         job.external_id = len(self.futures) - 1
@@ -147,7 +156,9 @@ class ParslRunner(AbstractRunner):
             raise job_future.exception()
 
         output_root = f"{self.logsdir}/{job.solver_id}/{job.benchmark_id}"
-        out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = [ output_root + ext for ext in [".out", ".err",".wrapper", ".solver", ".model", ".trimmer", ".checker"] ]
+        out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = [
+            output_root + ext for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]
+        ]
 
         resource_usage = self.execution_wrapper.parse_result(wrapper_out)
         solver_result = self.solver_adaptor.parse_result(solver_out)
