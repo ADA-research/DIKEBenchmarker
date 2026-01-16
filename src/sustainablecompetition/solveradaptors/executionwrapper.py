@@ -49,16 +49,22 @@ class ExecutionWrapper(AbstractExecutable):
         self.memorylimit = memorylimit or self.memorylimit
         self.cputimelimit = cputimelimit or self.cputimelimit
         self.walltimelimit = walltimelimit or self.walltimelimit
+        
+    def format_command(self, xid: str, binaries: list[str], wrapped_cmd: str, wrapper_output: str, wrapped_output: str) -> str:
+        """Return the command line to run the execution wrapper with parameters."""
+        result = self._format_base(xid, binaries)
+        result = self._format_extra(result, wrapped_cmd, wrapper_output, wrapped_output)
+        return result
 
     def _format_extra(self, base: str, wrapped_cmd: str, wrapper_output: str, wrapped_output: str) -> str:
         """Construct the commandline specific to runsolver with the specified resource limits."""
         return (
             base.replace("$WRAPPED_COMMAND", wrapped_cmd)
+            .replace("$WRAPPER_OUTPUT", wrapper_output)
+            .replace("$WRAPPED_OUTPUT", wrapped_output)
             .replace("$WALLTIME", str(self.walltimelimit))
             .replace("$CPUTIME", str(self.cputimelimit))
             .replace("$MEMORY", str(self.memorylimit))
-            .replace("$WRAPPER_OUTPUT", wrapper_output)
-            .replace("$WRAPPED_OUTPUT", wrapped_output)
         )
 
     def parse_result(self, outfile: str):

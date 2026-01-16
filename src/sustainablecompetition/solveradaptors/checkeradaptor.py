@@ -98,6 +98,12 @@ class CheckerAdaptor(AbstractExecutable):
             """,
             None,
         )
+        
+    def format_command(self, xid, binaries, instance: str, certificate: str, trimmer_output: str, checker_output: str) -> str:
+        """Get the command line for a given checker ID, replacing placeholders."""
+        result = self._format_base(xid, binaries)
+        result = self._format_extra(result, instance, certificate, trimmer_output, checker_output)
+        return result
 
     def _format_extra(self, base: str, instance: str, certificate: str, trimmer_output: str, checker_output: str) -> str:
         """Get the command line for a given checker ID, replacing placeholders."""

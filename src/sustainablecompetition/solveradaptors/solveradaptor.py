@@ -10,6 +10,13 @@ class SolverAdaptor(AbstractExecutable):
 
     def __init__(self, serialized: dict = None):
         super().__init__(serialized)
+        
+        
+    def format_command(self, xid: str, binaries: list[str], instance: str, certificate: str) -> str:
+        """Get the command line for a given solver ID, replacing placeholders."""
+        result = self._format_base(xid, binaries)
+        result = self._format_extra(result, instance, certificate)
+        return result
 
     def _format_extra(self, base: str, instance: str, certificate: str) -> str:
         """Get the command line for a given solver ID, replacing placeholders."""
