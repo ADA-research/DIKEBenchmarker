@@ -21,7 +21,7 @@ class ExecutionWrapper(AbstractExecutable):
             self.register(
                 "runsolver",
                 ["./external/runsolver"],
-                "$BIN --wall-clock-limit $WALLTIME --cpu-limit $CPUTIME --vsize-limit $MEMORY --var $WRAPPEROUT --solver-data $SOLVEROUT $SOLVECMD",
+                "$BIN0 --wall-clock-limit $WALLTIME --cpu-limit $CPUTIME --vsize-limit $MEMORY --var $WRAPPER_OUTPUT --solver-data $WRAPPED_OUTPUT sh -c '$WRAPPED_COMMAND'",
                 None,
             )
         self.memorylimit = serialized.get("memorylimit", 64 * 1024) if serialized else mem
@@ -50,17 +50,15 @@ class ExecutionWrapper(AbstractExecutable):
         self.cputimelimit = cputimelimit or self.cputimelimit
         self.walltimelimit = walltimelimit or self.walltimelimit
 
-    def format_command(self, xid: str, xbin: str, scmd: str, wrapperoutput: str, solveroutput: str) -> str:
+    def _format_extra(self, base: str, wrapped_cmd: str, wrapper_output: str, wrapped_output: str) -> str:
         """Construct the commandline specific to runsolver with the specified resource limits."""
         return (
-            self.registry[xid][1]
-            .replace("$BIN", xbin)
-            .replace("$SOLVECMD", scmd)
+            base.replace("$WRAPPED_COMMAND", wrapped_cmd)
             .replace("$WALLTIME", str(self.walltimelimit))
             .replace("$CPUTIME", str(self.cputimelimit))
             .replace("$MEMORY", str(self.memorylimit))
-            .replace("$WRAPPEROUT", wrapperoutput)
-            .replace("$SOLVEROUT", solveroutput)
+            .replace("$WRAPPER_OUTPUT", wrapper_output)
+            .replace("$WRAPPED_OUTPUT", wrapped_output)
         )
 
     def parse_result(self, outfile: str):

@@ -11,9 +11,9 @@ class SolverAdaptor(AbstractExecutable):
     def __init__(self, serialized: dict = None):
         super().__init__(serialized)
 
-    def format_command(self, xid: str, xbin: str, inst: str, cert: str) -> str:
+    def _format_extra(self, base: str, instance: str, certificate: str) -> str:
         """Get the command line for a given solver ID, replacing placeholders."""
-        return self.registry[xid][1].replace("$BIN", xbin).replace("$INST", inst).replace("$CERT", cert)
+        return base.replace("$INST", instance).replace("$CERT", certificate)
 
     def parse_result(self, outfile: str):
         """Extract the result from the solver file."""

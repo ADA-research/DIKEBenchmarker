@@ -135,21 +135,24 @@ if __name__ == "__main__":
         parsl_local_integration_test(benchmarks=short_easybatch)
     elif args.command == "slurm":
         print("Running parsl slurm integration test...")
+        
         if args.bfile:
             if not os.path.isfile(args.bfile):
                 print(f"Error: File '{args.bfile}' does not exist.")
                 sys.exit(1)
             df = pl.read_csv(args.file)
             benchmarks = df.select("hash").to_series().to_list()
-        else:
+        else: #fallback to default
             benchmarks = long_easybatch
+            
         if args.sfile:
             if not os.path.isfile(args.sfile):
                 print(f"Error: File '{args.sfile}' does not exist.")
                 sys.exit(1)
             solvers = args.sfile
-        else:
+        else: #fallback to default
             solvers = "./examples/solverAdaptors/sat/solvers1.csv"
+            
         parsl_slurm_integration_test(
             benchmarks=benchmarks, solvers=solvers, machine=args.machine, account=args.account, tasks_per_node=args.tasks_per_node, jobname=args.jobname
         )

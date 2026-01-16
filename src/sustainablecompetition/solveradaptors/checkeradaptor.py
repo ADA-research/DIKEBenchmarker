@@ -19,8 +19,8 @@ class CheckerAdaptor(AbstractExecutable):
             "drat",
             ["./external/checkers/drat-trim", "./external/checkers/cake_lpr"],
             """
-            $BIN0 $INST $CERT -C -D -L $CERT.trimmed 1> $TRIMMEROUT 2>&1
-            $BIN1 $INST $CERT.trimmed 1> $CHECKEROUT 2>&1
+            $BIN0 $INST $CERT -C -D -L $CERT.trimmed 1> $TRIMMER_OUTPUT 2>&1
+            $BIN1 $INST $CERT.trimmed 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.trimmed
             """,
             None,
@@ -29,8 +29,8 @@ class CheckerAdaptor(AbstractExecutable):
             "dratbin",
             ["./external/checkers/drat-trim", "./external/checkers/cake_lpr"],
             """
-            $BIN0 $INST $CERT -i -C -D -L $CERT.trimmed 1> $TRIMMEROUT 2>&1
-            $BIN1 $INST $CERT.trimmed 1> $CHECKEROUT 2>&1
+            $BIN0 $INST $CERT -i -C -D -L $CERT.trimmed 1> $TRIMMER_OUTPUT 2>&1
+            $BIN1 $INST $CERT.trimmed 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.trimmed
             """,
             None,
@@ -39,8 +39,8 @@ class CheckerAdaptor(AbstractExecutable):
             "dpr",
             ["./external/checkers/dpr-trim", "./external/checkers/cake_lpr"],
             """
-            $BIN0 $INST $CERT -C -D -L $CERT.trimmed 1> $TRIMMEROUT 2>&1
-            $BIN1 $INST $CERT.trimmed 1> $CHECKEROUT 2>&1
+            $BIN0 $INST $CERT -C -D -L $CERT.trimmed 1> $TRIMMER_OUTPUT 2>&1
+            $BIN1 $INST $CERT.trimmed 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.trimmed
             """,
             None,
@@ -49,8 +49,8 @@ class CheckerAdaptor(AbstractExecutable):
             "dprbin",
             ["./external/checkers/dpr-trim", "./external/checkers/cake_lpr"],
             """
-            $BIN0 $INST $CERT -i -C -D -L $CERT.trimmed 1> $TRIMMEROUT 2>&1
-            $BIN1 $INST $CERT.trimmed 1> $CHECKEROUT 2>&1
+            $BIN0 $INST $CERT -i -C -D -L $CERT.trimmed 1> $TRIMMER_OUTPUT 2>&1
+            $BIN1 $INST $CERT.trimmed 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.trimmed
             """,
             None,
@@ -59,9 +59,9 @@ class CheckerAdaptor(AbstractExecutable):
             "grat",
             ["./external/checkers/gratgen", "./external/checkers/gratchk"],
             """
-            $BIN0 $INST $CERT -o $CERT.gratp -l $CERT.gratl 1> $TRIMMEROUT 2>&1
+            $BIN0 $INST $CERT -o $CERT.gratp -l $CERT.gratl 1> $TRIMMER_OUTPUT 2>&1
             rm -f $CERT
-            $BIN1 @MLton max-heap 30G -- unsat $INST $CERT.gratl $CERT.gratp 1> $CHECKEROUT 2>&1
+            $BIN1 @MLton max-heap 30G -- unsat $INST $CERT.gratl $CERT.gratp 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.gratl $CERT.gratp
             """,
             None,
@@ -70,9 +70,9 @@ class CheckerAdaptor(AbstractExecutable):
             "gratbin",
             ["./external/checkers/gratgen", "./external/checkers/gratchk"],
             """
-            $BIN0 $INST $CERT -o $CERT.gratp -l $CERT.gratl -b 1> $TRIMMEROUT 2>&1
+            $BIN0 $INST $CERT -o $CERT.gratp -l $CERT.gratl -b 1> $TRIMMER_OUTPUT 2>&1
             rm -f $CERT
-            $BIN1 @MLton max-heap 30G -- unsat $INST $CERT.gratl $CERT.gratp 1> $CHECKEROUT 2>&1
+            $BIN1 @MLton max-heap 30G -- unsat $INST $CERT.gratl $CERT.gratp 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.gratl $CERT.gratp
             """,
             None,
@@ -81,9 +81,9 @@ class CheckerAdaptor(AbstractExecutable):
             "veripb",
             ["./external/checkers/pboxide_veripb", "./external/checkers/cake_pb_cnf"],
             """
-            $BIN0 --cnf --elaborate $CERT.trimmed $INST $CERT 1> $TRIMMEROUT 2>&1
+            $BIN0 --cnf --elaborate $CERT.trimmed $INST $CERT 1> $TRIMMER_OUTPUT 2>&1
             rm -f $CERT
-            $BIN1 $INST $CERT.trimmed 1> $CHECKEROUT 2>&1
+            $BIN1 $INST $CERT.trimmed 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.trimmed
             """,
             None,
@@ -93,22 +93,19 @@ class CheckerAdaptor(AbstractExecutable):
             ["./external/checkers/gratchk"],
             """
             grep "^v" $CERT | sed -re 's/^v//g' > $CERT.model
-            $BIN0 sat $INST $CERT.model 1> $CHECKEROUT 2>&1
+            $BIN0 sat $INST $CERT.model 1> $CHECKER_OUTPUT 2>&1
             rm -f $CERT.model
             """,
             None,
         )
 
-    def format_command(self, xid: str, xbin0: str, xbin1: str, inst: str, cert: str, trimmer_output: str, checker_output: str) -> str:
+    def _format_extra(self, base: str, instance: str, certificate: str, trimmer_output: str, checker_output: str) -> str:
         """Get the command line for a given checker ID, replacing placeholders."""
         return (
-            self.registry[xid][1]
-            .replace("$BIN0", xbin0)
-            .replace("$BIN1", xbin1)
-            .replace("$INST", inst)
-            .replace("$CERT", cert)
-            .replace("$TRIMMEROUT", trimmer_output)
-            .replace("$CHECKEROUT", checker_output)
+            base.replace("$INST", instance)
+            .replace("$CERT", certificate)
+            .replace("$TRIMMER_OUTPUT", trimmer_output)
+            .replace("$CHECKER_OUTPUT", checker_output)
         )
 
     def parse_result(self, outfile: str):

@@ -116,10 +116,10 @@ class ParslRunner(AbstractRunner):
         Return an id for identification of the process future.
         """
         output_root = f"{self.logsdir}/{job.solver_id}/{job.benchmark_id}"
-        
+
         if os.path.exists(f"{output_root}.done"):
             return
-        
+
         super().submit(job)  # this marks the job as submitted
         job.mark_running()  # mark as running immediately (workaround) TODO: proper monitoring of PARSL jobs
         os.makedirs(os.path.dirname(output_root), exist_ok=True)
@@ -160,10 +160,10 @@ class ParslRunner(AbstractRunner):
             raise job_future.exception()
 
         output_root = f"{self.logsdir}/{job.solver_id}/{job.benchmark_id}"
-        
+
         with open(f"{output_root}.done", "w") as f:
             f.write("")
-        
+
         out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = [
             output_root + ext for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]
         ]

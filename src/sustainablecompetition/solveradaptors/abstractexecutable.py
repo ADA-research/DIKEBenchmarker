@@ -31,14 +31,31 @@ class AbstractExecutable(ABC):
     def get_binaries(self, xid: str) -> list[str]:
         """Return the binary paths for a given executables ID."""
         return self.registry[xid][0]
+    
+    def get_format_string(self, xid: str) -> str:
+        """Return the format string for a given executable ID."""
+        return self.registry[xid][1]
 
     def get_checker(self, xid: str) -> str:
         """Return the checker command for a given executable ID."""
         return self.registry[xid][2]
 
-    @abstractmethod
-    def format_command(self, *args, **kwargs) -> str:
+    def format_command(self, xid: str, *args, **kwargs) -> str:
         """Return the command line to run the executable with parameters."""
+        result = self._format_base(xid)
+        result = self._format_extra(result, *args, **kwargs)
+        return result
+        
+    def _format_base(self, xid: str) -> str:
+        """Return the base command line for the executable."""
+        result = self.get_format_string(xid)
+        for i, bin_path in enumerate(self.get_binaries(xid)):
+            result = result.replace(f"$BIN{i}", bin_path)
+        return result
+    
+    def _format_extra(self, base, *args, **kwargs) -> str:
+        """Return the extra command line parts for the executable."""
+        return base
 
     @abstractmethod
     def parse_result(self, outfile: str):
