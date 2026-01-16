@@ -40,16 +40,16 @@ class AbstractExecutable(ABC):
         """Return the checker command for a given executable ID."""
         return self.registry[xid][2]
 
-    def format_command(self, xid: str, *args, **kwargs) -> str:
+    def format_command(self, xid: str, binaries: list[str], *args, **kwargs) -> str:
         """Return the command line to run the executable with parameters."""
-        result = self._format_base(xid)
+        result = self._format_base(xid, binaries)
         result = self._format_extra(result, *args, **kwargs)
         return result
         
-    def _format_base(self, xid: str) -> str:
+    def _format_base(self, xid: str, binaries: list[str]) -> str:
         """Return the base command line for the executable."""
         result = self.get_format_string(xid)
-        for i, bin_path in enumerate(self.get_binaries(xid)):
+        for i, bin_path in enumerate(binaries):
             result = result.replace(f"$BIN{i}", bin_path)
         return result
     

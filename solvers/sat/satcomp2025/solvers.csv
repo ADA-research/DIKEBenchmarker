@@ -4,7 +4,7 @@ ae-kissat2025-bump;./solvers/sat/satcomp2025/ae/ae-kissat2025-bump/kissat;$BIN "
 kissat-pred;./solvers/sat/satcomp2025/pred/kissat-pred/kissat;$BIN "$INST" "$CERT";gratbin
 kissat-pred-aggressive;./solvers/sat/satcomp2025/pred/kissat-pred-aggressive/kissat;$BIN --aggressive "$INST" "$CERT";gratbin
 kissat-public;./solvers/sat/satcomp2025/biere/kissat-public/kissat;$BIN "$INST" "$CERT";gratbin
-cadical-sc2025;./solvers/sat/satcomp2025/biere/cadical-sc2025/kissat;$BIN "$INST" "$CERT";gratbin
+cadical-sc2025;./solvers/sat/satcomp2025/biere/cadical-sc2025/cadical;$BIN "$INST" "$CERT";gratbin
 kissat-sc2025;./solvers/sat/satcomp2025/biere/kissat-sc2025/kissat;$BIN "$INST" "$CERT";gratbin
 kissat-vsa;./solvers/sat/satcomp2025/vsa/kissat-vsa/kissat;$BIN "$INST" "$CERT";gratbin
 ulc-cadical-alignable-order;./solvers/sat/satcomp2025/ulc/ulc-cadical-alignable-order/cadical;$BIN "$INST" "$CERT" --orderencode --orderencodeelim=1 --orderencodetype=1 --orderencodealigntype=1 --no-binary;dpr

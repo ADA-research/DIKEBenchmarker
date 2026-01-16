@@ -22,32 +22,39 @@ from sustainablecompetition.solveradaptors.solveradaptor import SolverAdaptor
 
 @bash_app
 def runsolver(
-    serialized_wrapper: dict,
-    serialized_solver: dict,
-    serialized_checker: dict,
     wrapper_id: str,
+    wrapper_serialized: dict,
+    wrapper_binaries: list[File],
     solver_id: str,
+    solver_serialized: dict,
+    solver_binaries: list[File],
     checker_id: str,
-    inputs: list[File],
+    checker_serialized: dict,
+    checker_binaries: list[File],
+    satchecker_binaries: list[File],
+    benchmark_instance: File,
     outputs: list[File],
 ):
     """Run the solver with the given input and output files."""
 
-    wrapper_bin, solver_bin, instance_file, trimmer_bin, checker_bin, satchecker_bin = inputs
+    # ensure executable flags are set, since files may be fetched via HTTP etc.:
+    for f in wrapper_binaries + solver_binaries + checker_binaries + satchecker_binaries:
+        os.chmod(f.filepath, 0o755)
+        
     out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = outputs
-    cnf = f"{solver_out.filepath}.cnf"
+    cnf = f"{benchmark_instance.filepath}.unpacked.cnf"
     cert_out = f"{solver_out.filepath}.cert"
 
-    wrapper = ExecutionWrapper.from_dict(serialized_wrapper)
-    solver = SolverAdaptor.from_dict(serialized_solver)
-    checker = CheckerAdaptor.from_dict(serialized_checker)
+    wrapper = ExecutionWrapper.from_dict(wrapper_serialized)
+    solver = SolverAdaptor.from_dict(solver_serialized)
+    checker = CheckerAdaptor.from_dict(checker_serialized)
 
-    solve_cmd = solver.format_command(solver_id, solver_bin.filepath, cnf, cert_out)
-    wrapper_cmd = wrapper.format_command(wrapper_id, wrapper_bin.filepath, solve_cmd, wrapper_out.filepath, solver_out.filepath)
+    solve_cmd = solver.format_command(solver_id, solver_binaries, cnf, cert_out)
+    wrapper_cmd = wrapper.format_command(wrapper_id, wrapper_binaries, solve_cmd, wrapper_out.filepath, solver_out.filepath)
     proof_checker_cmd = checker.format_command(
-        checker_id, trimmer_bin.filepath, checker_bin.filepath, cnf, cert_out, trimmer_out.filepath, checker_out.filepath
+        checker_id, checker_binaries, cnf, cert_out, trimmer_out.filepath, checker_out.filepath
     )
-    model_checker_cmd = checker.format_command("satchecker", satchecker_bin.filepath, "", cnf, solver_out.filepath, "", checker_out.filepath)
+    model_checker_cmd = checker.format_command("satchecker", satchecker_binaries, cnf, solver_out.filepath, "", checker_out.filepath)
 
     return f"""
     # redirect output and error streams
@@ -57,19 +64,15 @@ def runsolver(
     set -e
     set -x  # enable debug output to see which commands are executed
     
-    for f in "{wrapper_out.filepath}" "{solver_out.filepath}" "{model_out.filepath}" "{trimmer_out.filepath}" "{checker_out.filepath}"; do
-        touch "$f"
-    done
-
-    # ensure executable flags are set, since files may be fetched via HTTP etc.:
-    chmod +x "{wrapper_bin.filepath}" "{solver_bin.filepath}" "{trimmer_bin.filepath}" "{checker_bin.filepath}" "{satchecker_bin.filepath}"
+    # for f in "{wrapper_out.filepath}" "{solver_out.filepath}" "{model_out.filepath}" "{trimmer_out.filepath}" "{checker_out.filepath}"; do
+    #     touch "$f"
+    # done
     
     # log system information
     uname -a; echo; lscpu; echo; free -h; echo; df -h; echo
-    "{wrapper_bin.filepath}" --version
     echo "{wrapper_cmd}"
     
-    xzcat {instance_file.filepath} > "{cnf}"
+    xzcat {benchmark_instance.filepath} > "{cnf}"
 
     # run the solver
     {wrapper_cmd}
@@ -126,22 +129,20 @@ class ParslRunner(AbstractRunner):
 
         # set execution wrapper resource limits
         self.execution_wrapper.set_resource_limits(cputimelimit=job.timelimit, memorylimit=job.memlimit)
+        
         runsolver_future = runsolver(
-            self.execution_wrapper.to_dict(),
-            self.solver_adaptor.to_dict(),
-            self.checker_adaptor.to_dict(),
-            "runsolver",
-            job.solver_id,
-            job.checker_id,
-            inputs=[
-                File(self.execution_wrapper.get_binaries("runsolver")[0]),
-                File(self.solver_adaptor.get_binaries(job.solver_id)[0]),
-                File(self.instance_adaptor.get_path(job.benchmark_id)),
-                File(self.checker_adaptor.get_binaries(job.checker_id)[0]),
-                File(self.checker_adaptor.get_binaries(job.checker_id)[1]),
-                File(self.checker_adaptor.get_binaries("satchecker")[0]),
-            ],
-            outputs=[File(output_root + ext) for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]],
+            wrapper_id = "runsolver",
+            wrapper_serialized = self.execution_wrapper.to_dict(),
+            wrapper_binaries = [ File(f) for f in self.execution_wrapper.get_binaries("runsolver") ],
+            solver_id = job.solver_id,
+            solver_serialized = self.solver_adaptor.to_dict(),
+            solver_binaries = [ File(f) for f in self.solver_adaptor.get_binaries(job.solver_id) ],
+            checker_id = job.checker_id,
+            checker_serialized = self.checker_adaptor.to_dict(),
+            checker_binaries = [ File(f) for f in self.checker_adaptor.get_binaries(job.checker_id) ],
+            satchecker_binaries = [ File(f) for f in self.checker_adaptor.get_binaries("satchecker") ],
+            benchmark_instance = File(self.instance_adaptor.get_path(job.benchmark_id)),
+            outputs = [ File(output_root + ext) for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"] ],
         )
         self.futures.append(runsolver_future)
         job.external_id = len(self.futures) - 1
