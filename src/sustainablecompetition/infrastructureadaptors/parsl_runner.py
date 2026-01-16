@@ -43,6 +43,12 @@ def runsolver(
     # ensure executable flags are set, since files may be fetched via HTTP etc.:
     for f in solver_wrapper_binaries + solver_binaries + checker_binaries + checker_wrapper_binaries + satchecker_binaries:
         os.chmod(f.filepath, 0o755)
+        
+    solver_wrapper_binaries_paths = [f.filepath for f in solver_wrapper_binaries]
+    checker_wrapper_binaries_paths = [f.filepath for f in checker_wrapper_binaries]
+    solver_binaries_paths = [f.filepath for f in solver_binaries]
+    checker_binaries_paths = [f.filepath for f in checker_binaries]
+    satchecker_binaries_paths = [f.filepath for f in satchecker_binaries]
 
     out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = outputs
     cnf = f"{benchmark_instance.filepath}.unpacked.cnf"
@@ -53,15 +59,14 @@ def runsolver(
     checker_wrapper = ExecutionWrapper.from_dict(checker_wrapper_serialized)
     checker = CheckerAdaptor.from_dict(checker_serialized)
 
-    solve_cmd = solver.format_command(solver_id, solver_binaries, cnf, cert_out)
-    wrapper_cmd = solver_wrapper.format_command(solver_wrapper_id, solver_wrapper_binaries, solve_cmd, wrapper_out.filepath, solver_out.filepath)
+    solve_cmd = solver.format_command(solver_id, solver_binaries_paths, cnf, cert_out)
+    wrapper_cmd = solver_wrapper.format_command(solver_wrapper_id, solver_wrapper_binaries_paths, solve_cmd, wrapper_out.filepath, solver_out.filepath)
 
-    proof_checker_cmd = checker.format_command(checker_id, checker_binaries, cnf, cert_out, trimmer_out.filepath, checker_out.filepath)
+    proof_checker_cmd = checker.format_command(checker_id, checker_binaries_paths, cnf, cert_out, trimmer_out.filepath, checker_out.filepath)
     checker_wrapper_cmd = checker_wrapper.format_command(
-        checker_wrapper_id, checker_wrapper_binaries, proof_checker_cmd, trimmer_out.filepath, checker_out.filepath
+        checker_wrapper_id, checker_wrapper_binaries_paths, proof_checker_cmd, trimmer_out.filepath, checker_out.filepath
     )
-    model_checker_cmd = checker.format_command("satchecker", satchecker_binaries, cnf, solver_out.filepath, "", checker_out.filepath)
-
+    model_checker_cmd = checker.format_command("satchecker", satchecker_binaries_paths, cnf, solver_out.filepath, "", checker_out.filepath)
     return f"""
     # redirect output and error streams
     exec >"{out.filepath}" 2>"{err.filepath}"
