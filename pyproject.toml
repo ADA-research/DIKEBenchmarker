@@ -14,7 +14,6 @@ dependencies = [
 
 [tool.ruff]
 line-length = 160
-ignore = ["W293"] # ignore blank line whitespace warnings
 
 [tool.pylint.format]
 max-line-length = 160

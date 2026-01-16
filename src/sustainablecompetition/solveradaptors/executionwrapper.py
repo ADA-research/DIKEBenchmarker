@@ -49,7 +49,7 @@ class ExecutionWrapper(AbstractExecutable):
         self.memorylimit = memorylimit or self.memorylimit
         self.cputimelimit = cputimelimit or self.cputimelimit
         self.walltimelimit = walltimelimit or self.walltimelimit
-        
+
     def format_command(self, xid: str, binaries: list[str], wrapped_cmd: str, wrapper_output: str, wrapped_output: str) -> str:
         """Return the command line to run the execution wrapper with parameters."""
         result = self._format_base(xid, binaries)
