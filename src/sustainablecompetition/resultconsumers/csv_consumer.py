@@ -19,7 +19,7 @@ class CSVConsumer(AbstractConsumer):
         self.csv_path = csv_path
 
         if os.path.exists(csv_path):
-            df = pl.read_csv(csv_path)
+            df = pl.read_csv(csv_path, schema={"inst_hash": pl.Utf8, "solver_hash": pl.Utf8, "perf": pl.Utf8})
             if not {"inst_hash", "solver_hash", "perf"}.issubset(df.columns):
                 raise ValueError("csv exists and has wrong format")
             self.df = df
