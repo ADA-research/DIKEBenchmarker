@@ -116,11 +116,13 @@ def parsl_slurm_integration_test(
     solver_adaptor = SolverAdaptor()
     solver_adaptor.read_registry(solvers)
     instance_adaptor = SATInstanceAdaptor("./instances/sat/", "./instances/cnf_data.db")
+    walltime_seconds = solver_walltime + checker_walltime + 600 # extra buffer
     config = make_slurm_config(
         partition=machine,
         account=account,  # your account name or None to skip
         jobname=jobname,
         tasks_per_node=tasks_per_node,
+        walltime=f"{walltime_seconds//3600:02d}:{(walltime_seconds%3600)//60:02d}:{walltime_seconds%60:02d}",
     )
     runner = create_parsl_runner(
         solver_adaptor, instance_adaptor, config, solver_cputime, solver_walltime, solver_memory, checker_cputime, checker_walltime, checker_memory
