@@ -85,8 +85,17 @@ def runsolver(
     # log system information
     uname -a; echo; lscpu; echo; free -h; echo; df -h; echo
     echo "{wrapper_cmd}"
-    
-    xzcat {benchmark_instance.filepath} > "{cnf}"
+        
+    case "{benchmark_instance.filepath}" in
+        *.xz)              xzcat "{benchmark_instance.filepath}" ;;
+        *.bz2)             bzcat "{benchmark_instance.filepath}" ;;
+        *.gz)              zcat "{benchmark_instance.filepath}" ;;
+        *.tar.gz|*.tgz)    tar -xOzf "{benchmark_instance.filepath}" ;;
+        *.tar.bz2|*.tbz2)  tar -xOjf "{benchmark_instance.filepath}" ;;
+        *.tar.xz|*.txz)    tar -xOJf "{benchmark_instance.filepath}" ;;
+        *.tar)             tar -xOf "{benchmark_instance.filepath}" ;;
+        *)                 cat "{benchmark_instance.filepath}" ;;
+    esac > "{cnf}"
 
     # run the solver
     {wrapper_cmd}
