@@ -38,7 +38,12 @@ def runsolver(
     benchmark_instance: File,
     outputs: list[File],
 ):
-    """Run the solver with the given input and output files."""
+    """
+    Run the solver with the given input and output files.
+    All File objects are automatically copied to the remote execution location by parsl.
+    The File objects in outputs are created at the remote location and copied back to the local machine after execution.
+    The dictionaries are serialized versions of the respective adaptor and wrapper objects which are re-created at the remote location.
+    """
 
     # ensure executable flags are set, since files may be fetched via HTTP etc.:
     for f in solver_wrapper_binaries + solver_binaries + checker_binaries + checker_wrapper_binaries + satchecker_binaries:

@@ -37,11 +37,12 @@ class Job:
       CREATED/SUBMITTED -> CANCELLED
     """
 
-    def __init__(self, benchmark_id: str, solver_id: str, checker_id: str, logroot: str) -> None:
+    def __init__(self, benchmark_id: str, solver_id: str, checker_id: str, logroot: str, retries: int = 3) -> None:
         self.benchmark_id: str = benchmark_id
         self.solver_id: str = solver_id
         self.checker_id: str = checker_id
         self.logroot: str = logroot
+        self.retries: int = retries
 
         # timestamps
         self.created_at: datetime = datetime.now(timezone.utc)
@@ -57,12 +58,13 @@ class Job:
         # set by worker when submitted to external system
         self.external_id: Optional[str] = None
 
-    def clone(self) -> "Job":
+    def clone_retry(self) -> "Job":
         """
         Create a clone of this job with identical benchmark_id, solver_id, checker_id, and logroot.
         The cloned job will have a new created_at timestamp and will be in the CREATED state.
+        The retries count will be decremented by 1.
         """
-        return Job(benchmark_id=self.benchmark_id, solver_id=self.solver_id, checker_id=self.checker_id, logroot=self.logroot)
+        return Job(benchmark_id=self.benchmark_id, solver_id=self.solver_id, checker_id=self.checker_id, logroot=self.logroot, retries=self.retries - 1)
 
     def get_log_prefix(self) -> str:
         """

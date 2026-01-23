@@ -64,7 +64,8 @@ class AbstractBenchmarker(ABC):
         # iterate over the results
         for result in runner.completions():
             if result.has_failed():
-                runner.submit(result.get_job().clone())  # resubmit failed job, TODO: max retries
+                if result.get_job().retries > 0:
+                    runner.submit(result.get_job().clone_retry())  # resubmit failed job
                 continue
             self.handle_result(result)
             # submit the next job
