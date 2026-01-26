@@ -14,7 +14,7 @@ class TrivialBenchmarker(AbstractBenchmarker):
     Create jobs from a list of benchmark ids and a solver id return them one by one and only stops when all jobs are exhausted.
     """
 
-    def __init__(self, benchmark_ids: list[str], solver_id: str, checker_id: str, logroot: str):
+    def __init__(self, benchmark_ids: list[str], solver_id: str, checker_id: str = "none", logroot: str = "./logs"):
         super().__init__(benchmark_ids, solver_id, checker_id, logroot)
         self.jobs_submitted = set()
 

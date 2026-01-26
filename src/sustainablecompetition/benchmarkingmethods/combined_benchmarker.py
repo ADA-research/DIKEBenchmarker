@@ -14,7 +14,13 @@ class CombinedBenchmarker(AbstractBenchmarker):
     """
 
     def __init__(
-        self, selector: InstanceSelector, stopping_criteria: StoppingCriteria, benchmark_ids: list[str], solver_id: str, checker_id: str, logroot: str
+        self,
+        selector: InstanceSelector,
+        stopping_criteria: StoppingCriteria,
+        benchmark_ids: list[str],
+        solver_id: str,
+        checker_id: str = "none",
+        logroot: str = "./logs",
     ):
         super().__init__(benchmark_ids, solver_id, checker_id, logroot)
         self.selector = selector

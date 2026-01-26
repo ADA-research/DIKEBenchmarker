@@ -11,8 +11,7 @@ from queue import Queue
 from abc import ABC, abstractmethod
 from typing import Optional
 
-from sustainablecompetition.benchmarkatoms import Job, Result
-from sustainablecompetition.infrastructureadaptors.abstractrunner import AbstractRunner
+import sustainablecompetition.benchmarkatoms
 
 __all__ = ["AbstractBenchmarker"]
 
@@ -22,7 +21,7 @@ class AbstractBenchmarker(ABC):
     Decides which jobs to submit next; can depend on past results/dependencies.
     """
 
-    def __init__(self, benchmark_ids: list[str], solver_id: str, checker_id: str, logroot: str):
+    def __init__(self, benchmark_ids: list[str], solver_id: str, checker_id: str = "none", logroot: str = "./logs"):
         self.logroot = logroot
         self.benchmark_ids = benchmark_ids
         self.solver_id = solver_id
@@ -51,7 +50,7 @@ class AbstractBenchmarker(ABC):
                 consumer.consume_result(result)
 
     @abstractmethod
-    def next_job(self) -> Optional[Job]:
+    def next_job(self) -> Optional[sustainablecompetition.benchmarkatoms.Job]:
         """Return the next job to submit (can be None if there is nothing left to do)."""
         raise NotImplementedError
 
@@ -63,6 +62,6 @@ class AbstractBenchmarker(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def handle_result(self, result: Result) -> None:
+    def handle_result(self, result: sustainablecompetition.benchmarkatoms.Result) -> None:
         """Called for each finished/failed job to update planning or process results."""
         raise NotImplementedError
