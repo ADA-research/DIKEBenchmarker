@@ -21,8 +21,28 @@ class MinimumAccuracyStoppingCriterion(StoppingCriteria):
         self.db_adaptor = SqlDataAdaptor(db_path)
         self.solvers = self.db_adaptor.get_all_solver_ids()
         self.instance_performances = {}
+
+        # Filter out benchmark instances where any solver has no performance data
+        valid_benchmark_ids = []
+        for benchmark_id in self.selected_benchmark_ids:
+            all_have_perf = True
+            for solver_id in self.solvers:
+                perf_col = self.db_adaptor.get_performances(solver_hash=solver_id, inst_hash=benchmark_id).get_column("perf")
+                if len(perf_col) == 0:
+                    all_have_perf = False
+                    break
+            if all_have_perf:
+                valid_benchmark_ids.append(benchmark_id)
         performances = [
-            (solver_id, sum([self.db_adaptor.get_performances(solver_id=solver_id, benchmark_id=benchmark_id) for benchmark_id in self.benchmark_ids]))
+            (
+                solver_id,
+                sum(
+                    [
+                        self.db_adaptor.get_performances(solver_hash=solver_id, inst_hash=benchmark_id).get_column("perf")[0]
+                        for benchmark_id in valid_benchmark_ids
+                    ]
+                ),
+            )
             for solver_id in self.solvers
         ]
         sorted_solvers = sorted(performances, key=lambda x: x[1])
@@ -33,8 +53,31 @@ class MinimumAccuracyStoppingCriterion(StoppingCriteria):
             return False
         total_pairs = len(self.solvers) * (len(self.solvers) - 1) // 2
 
+        # Filter out benchmark instances where any solver has no performance data
+        valid_benchmark_ids = []
+        for benchmark_id in self.selected_benchmark_ids:
+            all_have_perf = True
+            for solver_id in self.solvers:
+                perf_col = self.db_adaptor.get_performances(solver_hash=solver_id, inst_hash=benchmark_id).get_column("perf")
+                if len(perf_col) == 0:
+                    all_have_perf = False
+                    break
+            if all_have_perf:
+                valid_benchmark_ids.append(benchmark_id)
+
+        if len(valid_benchmark_ids) <= 0:
+            return False
+
         performances = [
-            (solver_id, sum([self.db_adaptor.get_performances(solver_id=solver_id, benchmark_id=benchmark_id) for benchmark_id in self.selected_benchmark_ids]))
+            (
+                solver_id,
+                sum(
+                    [
+                        self.db_adaptor.get_performances(solver_hash=solver_id, inst_hash=benchmark_id).get_column("perf")[0]
+                        for benchmark_id in valid_benchmark_ids
+                    ]
+                ),
+            )
             for solver_id in self.solvers
         ]
         sorted_solvers = sorted(performances, key=lambda x: x[1])
