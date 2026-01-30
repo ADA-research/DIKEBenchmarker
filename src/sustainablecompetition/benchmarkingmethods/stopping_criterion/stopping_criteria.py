@@ -1,16 +1,11 @@
 """Stopping Criteria Interfaces"""
 
 from abc import ABC, abstractmethod
-# from typing import TYPE_CHECKING
 
 from sustainablecompetition.benchmarkatoms import Result
 
-# if TYPE_CHECKING:
-from sustainablecompetition.benchmarkingmethods.stopping_criterion.or_stopping_criteria import OrStoppingCriteria
-from sustainablecompetition.benchmarkingmethods.stopping_criterion.and_stopping_criteria import AndStoppingCriteria
 
-
-__all__ = ["StoppingCriteria"]
+__all__ = ["StoppingCriteria", "OrStoppingCriteria", "NoStoppingCriteria", "AndStoppingCriteria"]
 
 
 class StoppingCriteria(ABC):
@@ -35,3 +30,59 @@ class StoppingCriteria(ABC):
 
     def __and__(self, value: "StoppingCriteria") -> "AndStoppingCriteria":
         return AndStoppingCriteria([self, value])
+
+
+class OrStoppingCriteria(StoppingCriteria):
+    """
+    Stops when any of the stopping criterion is true.
+    """
+
+    def __init__(self, criteria: list[StoppingCriteria]):
+        super().__init__()
+        self.criteria: list[StoppingCriteria] = []
+        for c in criteria:
+            if isinstance(c, OrStoppingCriteria):
+                self.criteria += c.criteria
+            else:
+                self.criteria.append(c)
+
+    def should_stop(self) -> bool:
+        return any(c.should_stop() for c in self.criteria)
+
+    def handle_result(self, result: Result) -> None:
+        for c in self.criteria:
+            c.handle_result(result)
+
+
+class NoStoppingCriteria(StoppingCriteria):
+    """
+    Never stops
+    """
+
+    def should_stop(self) -> bool:
+        return False
+
+    def handle_result(self, result: Result) -> None:
+        pass
+
+
+class AndStoppingCriteria(StoppingCriteria):
+    """
+    Stops when anally of the stopping criterion is true.
+    """
+
+    def __init__(self, criteria: list[StoppingCriteria]):
+        super().__init__()
+        self.criteria: list[StoppingCriteria] = []
+        for c in criteria:
+            if isinstance(c, AndStoppingCriteria):
+                self.criteria += c.criteria
+            else:
+                self.criteria.append(c)
+
+    def should_stop(self) -> bool:
+        return all(c.should_stop() for c in self.criteria)
+
+    def handle_result(self, result: Result) -> None:
+        for c in self.criteria:
+            c.handle_result(result)
