@@ -140,7 +140,7 @@ def parsl_slurm_integration_test(
     runner = create_parsl_runner(
         solver_adaptor, instance_adaptor, config, solver_cputime, solver_walltime, solver_memory, checker_cputime, checker_walltime, checker_memory
     )
-    runner.run(methods, njobs=queue_max)
+    runner.run(methods, njobs=queue_max * tasks_per_node)
 
 
 if __name__ == "__main__":
