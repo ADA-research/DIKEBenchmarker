@@ -191,8 +191,18 @@ class ParslRunner(AbstractRunner):
             return Result(job, failed=True)
 
         output_root = job.get_log_prefix()
+
+        # mark job as done for future runs
         with open(f"{output_root}.done", "w") as f:
             f.write("")
+
+        # cleanup .unpacked.cnf and .cert files if they still exist
+        cnf_path = f"{output_root}.solver.unpacked.cnf"
+        cert_path = f"{output_root}.solver.cert"
+        if os.path.exists(cnf_path):
+            os.remove(cnf_path)
+        if os.path.exists(cert_path):
+            os.remove(cert_path)
 
         out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = [
             output_root + ext for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]
