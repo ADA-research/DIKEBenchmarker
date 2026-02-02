@@ -50,8 +50,13 @@ class AbstractRunner(ABC):
         for result in self.completions():
             print(f"Received result for job: Solver {result.get_job().solver_id} on Benchmark {result.get_job().benchmark_id}")
             if result.has_failed():
+                dec_retries = 1
+                if "loss of manager" in result.error:
+                    # do not decrement retries on manager loss
+                    dec_retries = 0
                 if result.get_job().retries > 0:
-                    self.submit(result.get_job().clone_retry())  # resubmit failed job
+                    # resubmit failed job
+                    self.submit(result.get_job().clone_retry(decrement=dec_retries))
                 continue
             result.get_job().job_producer.handle_result(result)
             result.get_job().job_producer.results_to_consume.put(result)

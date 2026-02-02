@@ -185,16 +185,11 @@ class ParslRunner(AbstractRunner):
         if not job_future.done():
             return None
 
-        if job_future.exception() is not None:
-            print(f"Job {job.solver_id} on {job.benchmark_id} failed with exception: {job_future.exception()}")
-            job.set_failed(str(job_future.exception()))
-            return Result(job, failed=True)
-
+        # get output file paths
         output_root = job.get_log_prefix()
-
-        # mark job as done for future runs
-        with open(f"{output_root}.done", "w") as f:
-            f.write("")
+        out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = [
+            output_root + ext for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]
+        ]
 
         # cleanup .unpacked.cnf and .cert files if they still exist
         cnf_path = f"{output_root}.solver.unpacked.cnf"
@@ -204,9 +199,17 @@ class ParslRunner(AbstractRunner):
         if os.path.exists(cert_path):
             os.remove(cert_path)
 
-        out, err, wrapper_out, solver_out, model_out, trimmer_out, checker_out = [
-            output_root + ext for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]
-        ]
+        # check for and handle exceptions
+        if job_future.exception() is not None:
+            print(f"Job {job.solver_id} on {job.benchmark_id} failed with exception: {job_future.exception()}")
+            with open(err, "a") as f:
+                f.write(f"Job failed with exception: {job_future.exception()}\n")
+            job.set_failed(str(job_future.exception()))
+            return Result(job, failed=True)
+
+        # mark job as done for future runs
+        with open(f"{output_root}.done", "w") as f:
+            f.write("")
 
         resource_usage = self.solver_wrapper.parse_result(wrapper_out)
         solver_result = self.solver_adaptor.parse_result(solver_out)

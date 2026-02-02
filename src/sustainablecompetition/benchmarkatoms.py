@@ -69,11 +69,11 @@ class Job:
         # set by worker when submitted to external system
         self.external_id: Optional[str] = None
 
-    def clone_retry(self) -> "Job":
+    def clone_retry(self, decrement: int = 1) -> "Job":
         """
         Create a clone of this job with identical benchmark_id, solver_id, checker_id, and logroot.
         The cloned job will have a new created_at timestamp and will be in the CREATED state.
-        The retries count will be decremented by 1.
+        The retries count will be decremented by the specified amount.
         """
         return Job(
             job_producer=self.job_producer,
@@ -81,7 +81,7 @@ class Job:
             solver_id=self.solver_id,
             checker_id=self.checker_id,
             logroot=self.logroot,
-            retries=self.retries - 1,
+            retries=self.retries - decrement,
         )
 
     def get_log_prefix(self) -> str:
