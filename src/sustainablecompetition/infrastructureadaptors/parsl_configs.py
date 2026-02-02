@@ -72,7 +72,7 @@ def make_slurm_config(
                 address=address_by_hostname(),
                 # Worker layout on each node:
                 cores_per_worker=1,  # one worker per core by default
-                max_workers_per_node=1,
+                max_workers_per_node=tasks_per_node or 1,
                 worker_debug=True,
                 provider=SlurmProvider(
                     partition=partition,
