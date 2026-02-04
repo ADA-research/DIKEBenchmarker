@@ -1,0 +1,17 @@
+ae-kissat2025-rescale;./satcomp25.solvers/ae/ae-kissat2025-rescale/kissat;$BIN0 "$INST" "$CERT";gratbin
+ae-kissat2025-mab;./satcomp25.solvers/ae/ae-kissat2025-mab/kissat;$BIN0 "$INST" "$CERT";gratbin
+ae-kissat2025-bump;./satcomp25.solvers/ae/ae-kissat2025-bump/kissat;$BIN0 "$INST" "$CERT";gratbin
+kissat-pred;./satcomp25.solvers/pred/kissat-pred/kissat;$BIN0 "$INST" "$CERT";gratbin
+kissat-pred-aggressive;./satcomp25.solvers/pred/kissat-pred-aggressive/kissat;$BIN0 --aggressive "$INST" "$CERT";gratbin
+kissat-public;./satcomp25.solvers/biere/kissat-public/kissat;$BIN0 "$INST" "$CERT";gratbin
+cadical-sc2025;./satcomp25.solvers/biere/cadical-sc2025/cadical;$BIN0 "$INST" "$CERT";gratbin
+kissat-sc2025;./satcomp25.solvers/biere/kissat-sc2025/kissat;$BIN0 "$INST" "$CERT";gratbin
+kissat-vsa;./satcomp25.solvers/vsa/kissat-vsa/kissat;$BIN0 "$INST" "$CERT";gratbin
+ulc-cadical-alignable-order;./satcomp25.solvers/ulc/ulc-cadical-alignable-order/cadical;$BIN0 --orderencode --orderencodeelim=1 --orderencodetype=1 --orderencodealigntype=1 --no-binary "$INST" "$CERT";dpr
+ulc-cadical-xlc;./satcomp25.solvers/ulc/ulc-cadical-xlc/cadical;$BIN0 --orderencode --orderencodetype=3 --no-binary "$INST" "$CERT";dpr
+ulc-cadical-alignable;./satcomp25.solvers/ulc/ulc-cadical-alignable/cadical;$BIN0 --orderencode --orderencodetype=1 --orderencodealigntype=1 --no-binary "$INST" "$CERT";dpr
+ulc-cadical-alignable-independent;./satcomp25.solvers/ulc/ulc-cadical-alignable-independent/cadical;$BIN0 --orderencode --orderencodetype=1 --orderencodealigntype=2 --no-binary "$INST" "$CERT";dpr
+dynamical;./satcomp25.solvers/dynamical/dynamical/dynamiccadical;$BIN0 "$INST" "$CERT";gratbin
+kissat-corephase-coreward;./satcomp25.solvers/corephase/kissat-corephase-coreward/kissat;$BIN0 "$INST" "$CERT";gratbin
+kissat-mab-corephase;./satcomp25.solvers/corephase/kissat-mab-corephase/kissat;$BIN0 "$INST" "$CERT";gratbin
+kissat-cure;./satcomp25.solvers/cure/kissat-cure/kissat;$BIN0 --coldrestart=1 --coldrestartfc=1 --coldrestartfo=0 --coldrestartfp=0 --no-binary "$INST" "$CERT";grat

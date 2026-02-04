@@ -51,7 +51,7 @@ def make_slurm_config(
     init_blocks: int = 1,
     min_blocks: int = 1,
     max_blocks: int = 100,
-    walltime: str = "02:00:00",
+    walltime_seconds: int = 172800,  # two days in seconds (default)
     worker_init: str = """# Load your environment here""",
 ) -> Config:
     """Create a Parsl config for SLURM-managed clusters."""
@@ -64,6 +64,8 @@ def make_slurm_config(
         scheduler_opts.append("#SBATCH --exclusive")
     if tasks_per_node:
         scheduler_opts.append(f"#SBATCH --ntasks-per-node={tasks_per_node}")
+
+    formatted_walltime = f"{walltime_seconds // 3600:02d}:{(walltime_seconds % 3600) // 60:02d}:{walltime_seconds % 60:02d}"
 
     return Config(
         executors=[
@@ -80,7 +82,7 @@ def make_slurm_config(
                     init_blocks=init_blocks,
                     min_blocks=min_blocks,
                     max_blocks=max_blocks,
-                    walltime=walltime,
+                    walltime=formatted_walltime,
                     launcher=SrunLauncher(overrides=""),  # use srun to launch
                     worker_init=worker_init,
                     scheduler_options="\n".join(scheduler_opts),

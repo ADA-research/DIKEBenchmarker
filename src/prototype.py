@@ -128,7 +128,7 @@ def parsl_slurm_integration_test(
         account=account,  # your account name or None to skip
         jobname=jobname,
         tasks_per_node=tasks_per_node,
-        walltime=f"{walltime_seconds // 3600:02d}:{(walltime_seconds % 3600) // 60:02d}:{walltime_seconds % 60:02d}",
+        walltime_seconds=walltime_seconds,
         max_blocks=queue_max,
     )
     methods = []

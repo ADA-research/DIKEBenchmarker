@@ -41,7 +41,7 @@ def shutdown(signum, frame):
         This function is typically registered as a signal handler to catch
         timeout or termination signals during job execution.
     """
-    print("Walltime approaching — shutting down HTEX workers")
+    print(f"Received signal {signum}, initiating graceful shutdown...")
 
     dfk = parsl.dfk()
 
