@@ -3,6 +3,7 @@ Adaptor to execution environment (cluster, SLURM, K8s, cloud API, vendor queue).
 """
 
 from abc import ABC, abstractmethod
+import sys
 import time
 
 from typing import TYPE_CHECKING
@@ -53,9 +54,11 @@ class AbstractRunner(ABC):
             print(f"Received result for job: Solver {result.get_job().solver_id} on Benchmark {result.get_job().benchmark_id}")
             if result.has_failed():
                 dec_retries = 1
-                if "loss of manager" in result.error:
+                if "loss of manager" in result.job.error:
                     # do not decrement retries on manager loss
                     dec_retries = 0
+                else:
+                    print(result.job.error, file=sys.stderr, flush=True)
                 if result.get_job().retries > 0:
                     # resubmit failed job
                     self.submit(result.get_job().clone_retry(decrement=dec_retries))
