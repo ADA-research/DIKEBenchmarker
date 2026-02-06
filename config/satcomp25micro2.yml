@@ -13,7 +13,7 @@ checker_memory: 65536        # Memory limit for checkers in MB
 # Job scheduler configuration
 scheduling:
   scheduler: slurm
-  machine: liskov                  # machine/partition name for scheduler
+  machine: floyd                  # machine/partition name for scheduler
   account: iser # Account name for scheduler
   tasks_per_node: 16                # Number of tasks per node
   jobname: satcomp25micro2           # Job name for scheduler
