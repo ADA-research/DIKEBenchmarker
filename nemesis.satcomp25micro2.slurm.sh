@@ -3,8 +3,8 @@
 #SBATCH --job-name=parsl-master
 #SBATCH --output=parsl-master-%j.out
 #SBATCH --error=parsl-master-%j.err
-#SBATCH --time=00:30:00                 # total walltime
 #SBATCH --signal=B:USR1@300             # 5 min warning before end
+#SBATCH --time=00:15:00                 # total walltime
 #SBATCH --requeue                       # allow automatic requeue if preempted
 #SBATCH --partition=cook                # name of slurm partition to use for the master job
 #SBATCH --nodes=1                       # only one node
