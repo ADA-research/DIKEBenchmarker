@@ -18,8 +18,9 @@
 3. Run the setup script to configure git filters and restore the database:
 
    ```bash
-   cd external/SustainableCompetition-db
+   cd src/sustainablecompetition/data/db
    ./setup.sh
+   cd ../../../..
    ```
 
 4. The database will be automatically restored from the dump.
@@ -29,5 +30,5 @@
 you can fetch the path of the database with :
 
 ```
-db_path = importlib.resources.files("sustainablecompetition.data").joinpath("sustainablecompetition.db")
+db_path = importlib.resources.files("sustainablecompetition.data.db").joinpath("sustainablecompetition.db")
 ```

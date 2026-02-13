@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error
 import importlib.resources
 
 
-db_path = importlib.resources.files("sustainablecompetition.data").joinpath("sustainablecompetition.db")
+db_path = importlib.resources.files("sustainablecompetition.data.db").joinpath("sustainablecompetition.db")
 db_adaptor = SqlDataAdaptor(db_path)
 
 # gathering my data

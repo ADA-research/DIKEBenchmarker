@@ -7,7 +7,7 @@ from sustainablecompetition.dataadaptors.sqlite_dataadaptor import SqlDataAdapto
 @pytest.fixture
 def db_path():
     # Use importlib.resources to get the path to the test database
-    with importlib.resources.files("sustainablecompetition.data.SustainableCompetition-db").joinpath("sustainablecompetition.db") as db_file:
+    with importlib.resources.files("sustainablecompetition.data.db").joinpath("sustainablecompetition.db") as db_file:
         return str(db_file)
 
 

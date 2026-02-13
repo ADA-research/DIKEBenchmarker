@@ -95,7 +95,7 @@ ALL_COLS = [
 
 
 def build_adaptor() -> CompetitionDataAdaptor:
-    db_path = files("sustainablecompetition.data.SustainableCompetition-db").joinpath("sustainablecompetition.db")
+    db_path = files("sustainablecompetition.data.db").joinpath("sustainablecompetition.db")
 
     cp_adaptor = CompetitionDataAdaptor.from_competition_csv("./examples/dataAdaptors/sat/main2024.csv", source_name="main2024", database_path=db_path)
     return cp_adaptor

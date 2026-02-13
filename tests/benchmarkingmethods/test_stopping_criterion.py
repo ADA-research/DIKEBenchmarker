@@ -8,7 +8,7 @@ from sustainablecompetition.dataadaptors.sqlite_dataadaptor import SqlDataAdapto
 
 
 def build_adaptor() -> SqlDataAdaptor:
-    db_path = importlib.resources.files("sustainablecompetition.data").joinpath("sustainablecompetition.db")
+    db_path = importlib.resources.files("sustainablecompetition.data.db").joinpath("sustainablecompetition.db")
     db_adaptor = SqlDataAdaptor(db_path)
     return db_adaptor
 

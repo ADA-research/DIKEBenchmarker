@@ -21,7 +21,7 @@ class WilcoxonStoppingCriterion(StoppingCriteria):
         self.min_accuracy = min_accuracy
         self.min_instances = min_instances
         self.selected_benchmark_ids = []
-        db_path = importlib.resources.files("sustainablecompetition.data").joinpath("sustainablecompetition.db")
+        db_path = importlib.resources.files("sustainablecompetition.data.db").joinpath("sustainablecompetition.db")
         self.db_adaptor = SqlDataAdaptor(db_path)
 
         self.challenger = challenger_id
