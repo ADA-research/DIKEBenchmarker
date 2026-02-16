@@ -20,7 +20,7 @@ def test_get_performances(adaptor,db_path):
     print(db_path)
     # Test with all optional arguments
     df = adaptor.get_performances(
-        inst_hash="00d1fe07ab948b348bb3fb423b1ef40d", solver_hash="adf32f950ddeaf523c254c5a787ba7ca", env_hash="88ca7c241064d3ada037118ac909d9a6"
+        inst_hash="00d1fe07ab948b348bb3fb423b1ef40d", solver_id="adf32f950ddeaf523c254c5a787ba7ca", env_id="88ca7c241064d3ada037118ac909d9a6"
     )
     assert isinstance(df, pl.DataFrame)
     assert not df.is_empty()
@@ -30,22 +30,22 @@ def test_get_performances(adaptor,db_path):
     assert isinstance(df_all, pl.DataFrame)
 
 
-def test_get_competition_env_hash(adaptor):
-    env_hash = adaptor.get_competition_env_hash("main2024")
-    assert env_hash is not None
-    assert isinstance(env_hash, str)
+def test_get_competition_env(adaptor):
+    env_id = adaptor.get_competition_env("main2024")
+    assert env_id is not None
+    assert isinstance(env_id, str)
 
 
-def test_get_competition_solver_hash(adaptor):
+def test_get_competition_solver_id(adaptor):
     # Test with solver_name
-    solver_hash = adaptor.get_competition_solver_hash("main2024", solver_name="AMSAT")
-    assert solver_hash is not None
-    assert isinstance(solver_hash, str)
+    solver_id = adaptor.get_competition_solver_id("main2024", solver_name="AMSAT")
+    assert solver_id is not None
+    assert isinstance(solver_id, str)
 
     # Test without solver_name (should return a list)
-    solver_hashes = adaptor.get_competition_solver_hash("main2024")
-    assert isinstance(solver_hashes, list)
-    assert all(isinstance(h, str) for h in solver_hashes)
+    solver_ides = adaptor.get_competition_solver_id("main2024")
+    assert isinstance(solver_ides, list)
+    assert all(isinstance(h, str) for h in solver_ides)
 
 
 def test_get_environments(adaptor):
