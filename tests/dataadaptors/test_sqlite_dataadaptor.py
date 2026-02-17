@@ -30,9 +30,11 @@ def test_get_performances(adaptor, db_path):
 
 
 def test_get_competition_env(adaptor):
-    env_id = adaptor.get_competition_env("main2024")
+    env_id, res_id = adaptor.get_competition_env("main2024")
     assert env_id is not None
     assert isinstance(env_id, str)
+    assert res_id is not None
+    assert isinstance(res_id, int)
 
 
 def test_get_competition_solver_id(adaptor):
