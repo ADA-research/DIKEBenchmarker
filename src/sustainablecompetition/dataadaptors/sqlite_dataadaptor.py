@@ -169,7 +169,7 @@ class SqlDataAdaptor(DataAdaptor):
             return pl.read_database(query, conn, execute_options={"parameters": env_ids})
         finally:
             conn.close()
-            
+
     def get_resources(self, res_ids: list) -> pl.DataFrame:
         """
         Returns the full resource rows for the given resource IDs.

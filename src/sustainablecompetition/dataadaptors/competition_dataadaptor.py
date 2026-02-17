@@ -124,7 +124,7 @@ class CompetitionDataAdaptor(DataAdaptor):
             self.solvers = db_adaptor.get_solvers(solver_ids=list(self.perfs["solver_id"]))
             # Merge perf with environments on env_id
             self.data = self.perfs.join(self.environments, left_on="env_id", right_on="env_id", how="left")
-            
+
             # Merge with resources on res_id
             self.data = self.data.join(self.resources, left_on="res_id", right_on="res_id", how="left")
 
