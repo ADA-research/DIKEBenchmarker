@@ -2,7 +2,6 @@ import polars as pl
 import sqlite3
 from typing import Optional
 
-import polars as pl
 
 from sustainablecompetition.dataadaptors.dataadaptor import DataAdaptor
 

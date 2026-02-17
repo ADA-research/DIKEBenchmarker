@@ -1,4 +1,3 @@
-import sys
 import pytest
 import polars as pl
 import importlib.resources

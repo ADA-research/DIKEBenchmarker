@@ -104,7 +104,7 @@ def build_adaptor() -> CompetitionDataAdaptor:
 
 @pytest.mark.dependency()
 def test_load():
-    adaptor = build_adaptor()
+    build_adaptor()
 
 
 @pytest.mark.dependency(depends=["test_load"])
