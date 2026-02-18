@@ -3,6 +3,7 @@ import pytest
 
 from sustainablecompetition.benchmarkatoms import Job, Result
 from sustainablecompetition.benchmarkingmethods.stopping_criterion.minimum_accuracy_stopping_criterion import MinimumAccuracyStoppingCriterion
+from sustainablecompetition.benchmarkingmethods.stopping_criterion.percentage_stopping_criterion import PercentageStoppingCriterion
 from sustainablecompetition.benchmarkingmethods.stopping_criterion.wilcoxon_stopping_criterion import WilcoxonStoppingCriterion
 from sustainablecompetition.dataadaptors.sqlite_dataadaptor import SqlDataAdaptor
 
@@ -52,6 +53,38 @@ class TestMinimumAccuracyStoppingCriterion:
     def test_low_accuracy_threshold(self, adaptor, benchmark_ids, solver_ids):
         criterion = MinimumAccuracyStoppingCriterion(benchmark_ids, solver_ids, min_accuracy=0.0, db_adaptor=adaptor)
         criterion.handle_result(make_result(benchmark_ids[0], solver_ids[0]))
+        assert criterion.should_stop() is True
+
+
+class TestPercentageStoppingCriterion:
+    def test_does_not_stop_initially(self, benchmark_ids):
+        criterion = PercentageStoppingCriterion(benchmark_ids, percentage=0.5)
+        assert criterion.should_stop() is False
+
+    def test_stops_at_percentage(self, benchmark_ids, solver_ids):
+        criterion = PercentageStoppingCriterion(benchmark_ids, percentage=0.5)
+        half = len(benchmark_ids) // 2
+        for bid in benchmark_ids[:half]:
+            criterion.handle_result(make_result(bid, solver_ids[0]))
+        assert criterion.should_stop() is True
+
+    def test_stops_with_all_instances(self, benchmark_ids, solver_ids):
+        criterion = PercentageStoppingCriterion(benchmark_ids, percentage=1.0)
+        for bid in benchmark_ids:
+            criterion.handle_result(make_result(bid, solver_ids[0]))
+        assert criterion.should_stop() is True
+
+    def test_stops_immediately_with_zero_percentage(self, benchmark_ids):
+        criterion = PercentageStoppingCriterion(benchmark_ids, percentage=0.0)
+        assert criterion.should_stop() is True
+
+    def test_handle_result_adds_benchmark(self, benchmark_ids, solver_ids):
+        criterion = PercentageStoppingCriterion(benchmark_ids, percentage=0.5)
+        criterion.handle_result(make_result(benchmark_ids[0], solver_ids[0]))
+        assert benchmark_ids[0] in criterion.selected_benchmark_ids
+
+    def test_empty_benchmark_ids(self):
+        criterion = PercentageStoppingCriterion([], percentage=0.5)
         assert criterion.should_stop() is True
 
 
