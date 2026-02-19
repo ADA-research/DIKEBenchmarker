@@ -30,7 +30,7 @@ class AbstractBenchmarker(ABC):
         self.consumers = []
         # safe concurrent access to results queue to be consumed by consumers in a separate thread:
         self.results_to_consume: Queue = Queue()
-        self.result_consumer_thread = Thread(target=self._consume_results, args=(self.results_to_consume,), daemon=False)
+        self.result_consumer_thread = Thread(target=self._consume_results, args=(self.results_to_consume,), daemon=True)
         self.result_consumer_thread.start()
 
     def register_consumer(self, consumer):
