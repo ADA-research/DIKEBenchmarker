@@ -85,6 +85,8 @@ class SqlDataAdaptor(DataAdaptor):
 
             # Execute the query with parameters
             df = pl.read_database(query, conn, execute_options={"parameters": params})
+            if "perf" in df.columns:
+                df = df.with_columns(pl.col("perf").cast(pl.Float64))
             return df
         finally:
             conn.close()
