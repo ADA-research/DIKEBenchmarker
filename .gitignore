@@ -435,6 +435,13 @@ FodyWeavers.xsd
 .venv*
 build/*
 
+
+# sphinx auto-generated files
+docs/build/
+docs/source/_autosummary/
+docs/source/_build/
+docs/source/*.rst
+
 # unziped solvers
 solvers/*/main_*/*/*
 

@@ -17,7 +17,7 @@ scheduling:
   account: iser                     # Account name for scheduler
   tasks_per_node: 16                # Number of tasks per node
   jobname: satcomp25micro2          # Job name for scheduler
-  workerinit: "export PYTHONNOUSERSITE=1; unset PYTHONPATH; source /nfs/home/iser/git/SustainableCompetition/venv/bin/activate; cd /nfs/home/iser/git/SustainableCompetition"  # Initialization commands for each worker node
+  workerinit: "export PYTHONNOUSERSITE=1; unset PYTHONPATH; source /nfs/home/iser/git/SustainableCompetition/venv/bin/activate; cd /nfs/home/iser/git/SustainableCompetition"  # Initialization commands for each worker node, make sure to access the correct path to the virtual environment and the SustainableCompetition repositorynode
   queuelimit: 2                 # Maximum number of slurm worker jobs to queue at once, skip this limit to determine limit automatically based on scheduler configuration
 
 # Benchmark and solver files

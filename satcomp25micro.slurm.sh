@@ -1,11 +1,11 @@
 #!/bin/bash
 
-#SBATCH --job-name=parsl-master
-#SBATCH --output=parsl-master-%j.log
-#SBATCH --error=parsl-master-%j.log
+#SBATCH --job-name=parsl-main
+#SBATCH --output=parsl-main-%j.log
+#SBATCH --error=parsl-main-%j.log
 #SBATCH --signal=B:USR1@120             # 2 min warning before end
 #SBATCH --time=48:00:00                 # total walltime
-#SBATCH --partition=cpuonly             # name of slurm partition to use for the master job
+#SBATCH --partition=cpuonly             # name of slurm partition to use for the main job
 #SBATCH --nodes=1                       # only one node
 #SBATCH --ntasks=1                      # single task (process)
 #SBATCH --cpus-per-task=1               # single core
