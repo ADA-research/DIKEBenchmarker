@@ -27,7 +27,7 @@ class LocalRunner(AbstractRunner):
         self.solver = solver
         self.instances = instances
         self.pool = ProcessPoolExecutor(max_workers=parallel)
-        self.futures = []
+        self.futures_map = {}  # maps job uid to future for easy lookup in completed()
 
     def __del__(self):
         self.pool.shutdown(wait=True)
@@ -40,17 +40,15 @@ class LocalRunner(AbstractRunner):
         solverpath = self.solver.get_path(job.solver_id)
         instancepath = self.instances.get_path(job.benchmark_id)
         future = self.pool.submit(wrapper, solverpath, instancepath, job)
-        self.futures.append(future)
+        self.futures_map[job.uid] = future
         super().submit(job)
-        job.external_id = len(self.futures) - 1
         return True
 
     def completed(self, job: Job) -> Result:
         """
         Check if a job has completed.
         """
-        extid = job.external_id
-        future = self.futures[extid]
+        future = self.futures_map[job.uid]
         if future.done():
             return Result(job, 0, 0)
         return None

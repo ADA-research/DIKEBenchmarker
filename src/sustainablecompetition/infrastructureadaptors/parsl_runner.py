@@ -139,7 +139,7 @@ class ParslRunner(AbstractRunner):
         logging.basicConfig(level=logging.WARNING)
         logging.getLogger("parsl").setLevel(logging.WARNING)
         # parsl.set_stream_logger()
-        self.futures = []
+        self.futures_map = {}  # maps job uid to future for easy lookup
 
     def submit(self, job: Job) -> bool:
         """
@@ -173,16 +173,14 @@ class ParslRunner(AbstractRunner):
             benchmark_instance=File(self.instance_adaptor.get_path(job.benchmark_id)),
             outputs=[File(output_root + ext) for ext in [".out", ".err", ".wrapper", ".solver", ".model", ".trimmer", ".checker"]],
         )
-        self.futures.append(runsolver_future)
-        job.external_id = len(self.futures) - 1
+        self.futures_map[job.uid] = runsolver_future
         return True
 
     def completed(self, job: Job) -> Result:
         """
         Return the runtime result for the solver/instance pair.
         """
-        extid = job.external_id
-        job_future = self.futures[extid]
+        job_future = self.futures_map[job.uid]
         if not job_future.done():
             return None
 
@@ -219,4 +217,6 @@ class ParslRunner(AbstractRunner):
         return Result(job, resource_usage["cputime"], resource_usage["memory"])
 
     def cancel(self, job):
+        job_future = self.futures_map[job.uid]
+        job_future.cancel()
         return super().cancel(job)

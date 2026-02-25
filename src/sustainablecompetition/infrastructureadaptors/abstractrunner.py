@@ -113,13 +113,17 @@ class AbstractRunner(ABC):
         while not all(j.state in FINISHED_STATES for j in self.jobs):
             for job in self.jobs:
                 if control.is_shutting_down():
-                    print("Runner is shutting down, exiting completions loop.")
-                    return
+                    print("Runner is shutting down, cancelling job.")
+                    self.cancel(job)
+                    continue
                 if job.state == JobState.RUNNING:
                     result = self.completed(job)
                     if result is not None:
                         yield result
                 time.sleep(sleep_duration)
+            if control.is_shutting_down():
+                print("Runner is shutting down, exiting completions loop.")
+                return
 
     @abstractmethod
     def cancel(self, job: Job):

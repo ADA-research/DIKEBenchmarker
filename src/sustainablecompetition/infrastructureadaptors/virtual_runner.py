@@ -18,7 +18,6 @@ class VirtualRunner(AbstractRunner):
 
     def submit(self, job: Job):
         accepted = super().submit(job)
-        job.external_id = len(self.jobs) - 1
         job.mark_running()
         return accepted
 
@@ -26,8 +25,6 @@ class VirtualRunner(AbstractRunner):
         """
         Return the runtime result for the solver/instance pair.
         """
-        extid = job.external_id
-        job = self.jobs[extid]
         instance = job.benchmark_id
         solver = job.solver_id
         runtime = self.runtimes.get_performances(instance, solver)["perf"][0]

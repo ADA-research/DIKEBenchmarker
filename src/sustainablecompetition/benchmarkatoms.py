@@ -1,6 +1,7 @@
 """Basic benchmarking job and result representation"""
 
 import logging
+import itertools
 from enum import Enum
 from datetime import datetime, timezone
 from typing import TYPE_CHECKING, Optional
@@ -39,6 +40,8 @@ class Job:
       CREATED/SUBMITTED -> CANCELLED
     """
 
+    _id_counter = itertools.count()
+
     def __init__(
         self,
         job_producer: "AbstractBenchmarker",
@@ -48,6 +51,8 @@ class Job:
         logroot: str,
         retries: int = 3,
     ) -> None:
+        self.uid = next(Job._id_counter)
+
         self.job_producer: "AbstractBenchmarker" = job_producer
         self.benchmark_id: str = benchmark_id
         self.solver_id: str = solver_id
@@ -65,9 +70,6 @@ class Job:
         self.state: JobState = JobState.CREATED
         self.result: Optional["Result"] = None
         self.error: Optional[str] = None
-
-        # set by worker when submitted to external system
-        self.external_id: Optional[str] = None
 
     def clone_retry(self, decrement: int = 1) -> "Job":
         """
