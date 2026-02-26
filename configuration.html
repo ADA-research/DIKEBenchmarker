@@ -115,10 +115,45 @@
 </section>
 <section id="configuration-keys">
 <h2>Configuration Keys<a class="headerlink" href="#configuration-keys" title="Link to this heading"></a></h2>
-<dl class="simple">
+<dl>
 <dt>benchmarks<span class="classifier">str</span></dt><dd><p>Path to CSV file containing benchmark instances (relative to config file directory).</p>
+<p><strong>CSV File Format</strong></p>
+<p>The CSV file specified by this configuration parameter should contain a list of benchmark instances to be used in the competition. The CSV file must follow this format:</p>
+<ul class="simple">
+<li><p><strong>Header</strong>: The first row must contain column names. At minimum, it should include a <code class="docutils literal notranslate"><span class="pre">hash</span></code> column.</p></li>
+<li><p><strong>Data Rows</strong>: Each subsequent row represents a single benchmark instance.</p></li>
+<li><p><strong>Column</strong>: <code class="docutils literal notranslate"><span class="pre">hash</span></code> - A unique identifier (typically an MD5 hash) for each benchmark instance.</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">hash</span>
+<span class="mi">00</span><span class="n">d5a43a481477fa4d56a2ce152a6cfb</span>
+<span class="mi">00</span><span class="n">fd8ac9acd186a7a78a2c4d92f90de1</span>
+<span class="mf">0205e2</span><span class="n">dffaef93a90c239df31755f2e1</span>
+<span class="mi">032941</span><span class="n">f5f28c9ac53fa1c80d35f3206f</span>
+<span class="o">...</span>
+</pre></div>
+</div>
 </dd>
 <dt>solvers<span class="classifier">str</span></dt><dd><p>Path to CSV file containing solver registry (relative to config file directory).</p>
+<p><strong>CSV File Format</strong></p>
+<p>The registry file is a semicolon-delimited CSV file with the following columns:</p>
+<ul class="simple">
+<li><p><strong>id</strong>: Executable identifier (e.g., solver name, wrapper name)</p></li>
+<li><p><strong>bin</strong>: Path(s) to binary executable(s), comma-separated. Relative paths are resolved relative to the registry file’s directory.</p></li>
+<li><p><strong>fmt</strong>: Command format string with placeholders:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">$BIN0</span></code>, <code class="docutils literal notranslate"><span class="pre">$BIN1</span></code>, … for binary paths (in order)</p></li>
+<li><p>Custom placeholders (e.g., <code class="docutils literal notranslate"><span class="pre">$INST</span></code>, <code class="docutils literal notranslate"><span class="pre">$CERT</span></code>) replaced by subclass implementations</p></li>
+</ul>
+</li>
+<li><p><strong>checker</strong>: Optional checker command ID for validating executable output</p></li>
+</ul>
+<p><strong>Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>id;bin;fmt;checker
+kissat-sc2025;./satcomp25.solvers/biere/kissat-sc2025/kissat;$BIN0 &quot;$INST&quot; &quot;$CERT&quot;;gratbin
+cadical-sc2025;./satcomp25.solvers/biere/cadical-sc2025/cadical;$BIN0 &quot;$INST&quot; &quot;$CERT&quot;;gratbin
+</pre></div>
+</div>
 </dd>
 <dt>results<span class="classifier">str</span></dt><dd><p>Path to output directory for logs and results (relative to config file directory).</p>
 </dd>
@@ -155,7 +190,7 @@
 </dd>
 <dt>workerinit<span class="classifier">str</span></dt><dd><p>Shell commands to run before worker execution (default: empty).</p>
 </dd>
-<dt>queuelimit<span class="classifier">int</span></dt><dd><p>Maximum queue depth (default: computed automatically).</p>
+<dt>queuelimit<span class="classifier">int</span></dt><dd><p>Maximum number of jobs to submit to the scheduler in one batch (default: computed automatically).</p>
 </dd>
 </dl>
 </section>
