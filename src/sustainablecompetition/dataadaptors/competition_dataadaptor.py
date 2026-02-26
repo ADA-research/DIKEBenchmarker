@@ -24,15 +24,18 @@ class CompetitionDataAdaptor(DataAdaptor):
 
     def __init__(self, df: str = None, csv: str = None, source_name: str = None, database_path: str = None):
         """Initialize the data adaptor with a polars DataFrame or a csv
+
         Args:
             df (pl.DataFrame): DataFrame containing the competition data.
             The DataFrame must contain at least the following columns:
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
+
             csv (str): csv file containing the competition data.
             The DataFrame must contain at least the following columns:
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
+
             source_name (str): the name of the competition to allow for meta data retrieval
             database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
@@ -47,11 +50,13 @@ class CompetitionDataAdaptor(DataAdaptor):
     def from_dataframe(cls, df: pl.DataFrame, source_name: str = None, database_path: str = None):
         """
         Initialize the data adaptor with a polars DataFrame.
+
         Args:
             df (pl.DataFrame): DataFrame containing the competition data.
             The DataFrame must contain at least the following columns:
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
+
             source_name (str): the name of the competition to allow for meta data retrieval
             database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
@@ -62,11 +67,13 @@ class CompetitionDataAdaptor(DataAdaptor):
         """
         Initialize the data adaptor with the corresponding csv data from the sat competition website
         following recent competition format (since 2021)
+
         Args:
             competition_data (str): csv file containing the competition data.
             The DataFrame must contain at least the following columns:
                 - hash: the id of the benchmark instance
                 - other columns names are the ids of the solvers
+
             source_name (str): the name of the competition to allow for meta data retrieval
             database_path (str): the path of the sustainable competition database to allow for meta data retrieval
         """
@@ -74,6 +81,7 @@ class CompetitionDataAdaptor(DataAdaptor):
 
     def prepare_data(self, source_name: str = None, database_path: str = None):
         """pivot data and use our database for getting the environment, instances and solver features
+
         Args:
             source_name (str): the name of the competition to allow for meta data retrieval
             database_path (str): the path of the sustainable competition database to allow for meta data retrieval
@@ -142,6 +150,7 @@ class CompetitionDataAdaptor(DataAdaptor):
         """
         Get the performance of a specific benchmark instance.
         Hardware id is ignored as this data adaptor is for a single hardware configuration. (TODO: find a better way to handle this)
+
         Args:
             inst_hash (str): the id of the instance to get the performances about
             solver_id (Optional[str], optional): If set, only gives the performance with the specified id. Defaults to None.

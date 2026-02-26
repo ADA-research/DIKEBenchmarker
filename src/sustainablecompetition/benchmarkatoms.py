@@ -32,11 +32,14 @@ class Job:
     Benchmarking Job that behaves like a future.
 
     Identity: benchmark_id, solver_id, created_at (ctor time).
+
     Lifecycle:
+
       CREATED (initial)
         --[put into JobLog]--> SUBMITTED
         --[start working on]--> RUNNING
         --[finish working on]--> FINISHED | FAILED
+
       CREATED/SUBMITTED -> CANCELLED
     """
 

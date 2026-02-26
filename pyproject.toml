@@ -15,6 +15,10 @@ dependencies = [
 
 [tool.ruff]
 line-length = 160
+select = ["E", "F", "D"]  # enable docstring rules
+
+[tool.ruff.pydocstyle]
+convention = "google"
 
 [tool.pylint.format]
 max-line-length = 160

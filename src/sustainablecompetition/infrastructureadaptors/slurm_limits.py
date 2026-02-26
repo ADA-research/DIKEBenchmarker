@@ -96,9 +96,7 @@ def get_qos_limits(qos: str):
 
 
 def get_group_limits(user: str):
-    """
-    Return GrpJobs limits for all Slurm associations of the user.
-    """
+    """Return GrpJobs limits for all Slurm associations of the user."""
     out = _run(f"sacctmgr show assoc where user={user} format=GrpJobs -n -P")
 
     if not out:
@@ -113,14 +111,7 @@ def get_group_limits(user: str):
 
 
 def compute_max_blocks(safety_factor: float = 0.8, fallback: int = 100):
-    """Determine safe maximum of submittable jobs as follows:
-    max_blocks <= min(
-        user running job limit,
-        user submit limit - current submitted jobs,
-        QoS running job limit,
-        QoS submit limit - current submitted jobs,
-    )
-    """
+    """Determine safe maximum of simultaneously submitted jobs."""
     user = getpass.getuser()
 
     current_jobs = get_current_jobs(user)
