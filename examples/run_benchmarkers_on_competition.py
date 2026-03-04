@@ -15,7 +15,7 @@ from DIKEBenchmarker.benchmarkingmethods.stopping_criterion.percentage_stopping_
 from DIKEBenchmarker.benchmarkingmethods.stopping_criterion.wilcoxon_stopping_criterion import WilcoxonStoppingCriterion
 from DIKEBenchmarker.dataadaptors.dataadaptor import DataAdaptor
 from DIKEBenchmarker.dataadaptors.sqlite_dataadaptor import SqlDataAdaptor
-from DIKEBenchmarker.infrastructureadaptors.abstractrunner import AbstractRunner
+from DIKEBenchmarker.infrastructureadaptors.abstract_runner import AbstractRunner
 from DIKEBenchmarker.infrastructureadaptors.virtual_runner import VirtualRunner
 
 
