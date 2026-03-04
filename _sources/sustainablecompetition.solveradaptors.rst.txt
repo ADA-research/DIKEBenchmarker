@@ -1,37 +1,37 @@
-sustainablecompetition.solveradaptors package
+DIKEBenchmarker.solveradaptors package
 =============================================
 
 Submodules
 ----------
 
-sustainablecompetition.solveradaptors.abstractexecutable module
+DIKEBenchmarker.solveradaptors.abstractexecutable module
 ---------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.solveradaptors.abstractexecutable
+.. automodule:: DIKEBenchmarker.solveradaptors.abstractexecutable
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.solveradaptors.checkeradaptor module
+DIKEBenchmarker.solveradaptors.checkeradaptor module
 -----------------------------------------------------------
 
-.. automodule:: sustainablecompetition.solveradaptors.checkeradaptor
+.. automodule:: DIKEBenchmarker.solveradaptors.checkeradaptor
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.solveradaptors.executionwrapper module
+DIKEBenchmarker.solveradaptors.executionwrapper module
 -------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.solveradaptors.executionwrapper
+.. automodule:: DIKEBenchmarker.solveradaptors.executionwrapper
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.solveradaptors.solveradaptor module
+DIKEBenchmarker.solveradaptors.solveradaptor module
 ----------------------------------------------------------
 
-.. automodule:: sustainablecompetition.solveradaptors.solveradaptor
+.. automodule:: DIKEBenchmarker.solveradaptors.solveradaptor
    :members:
    :show-inheritance:
    :undoc-members:
@@ -39,7 +39,7 @@ sustainablecompetition.solveradaptors.solveradaptor module
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.solveradaptors
+.. automodule:: DIKEBenchmarker.solveradaptors
    :members:
    :show-inheritance:
    :undoc-members:

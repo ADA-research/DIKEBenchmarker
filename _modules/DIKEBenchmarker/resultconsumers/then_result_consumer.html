@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sustainablecompetition.resultconsumers.then_result_consumer &mdash; DIKE 1 documentation</title>
+  <title>DIKEBenchmarker.resultconsumers.then_result_consumer &mdash; DIKE 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
@@ -42,7 +42,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">Configuration File Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">sustainablecompetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">DIKEBenchmarker</a></li>
 </ul>
 
         </div>
@@ -60,7 +60,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">sustainablecompetition.resultconsumers.then_result_consumer</li>
+      <li class="breadcrumb-item active">DIKEBenchmarker.resultconsumers.then_result_consumer</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,19 +69,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for sustainablecompetition.resultconsumers.then_result_consumer</h1><div class="highlight"><pre>
+  <h1>Source code for DIKEBenchmarker.resultconsumers.then_result_consumer</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">ThenResultConsumer for benchmarking results.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">sustainablecompetition.benchmarkatoms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">sustainablecompetition.resultconsumers.abstract_consumer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractConsumer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">DIKEBenchmarker.benchmarkatoms</span><span class="w"> </span><span class="kn">import</span> <span class="n">Result</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">DIKEBenchmarker.resultconsumers.abstract_consumer</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractConsumer</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ThenResultConsumer&quot;</span><span class="p">]</span>
 
 
 <div class="viewcode-block" id="ThenResultConsumer">
-<a class="viewcode-back" href="../../../sustainablecompetition.resultconsumers.html#sustainablecompetition.resultconsumers.then_result_consumer.ThenResultConsumer">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.resultconsumers.html#DIKEBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ThenResultConsumer</span><span class="p">(</span><span class="n">AbstractConsumer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Applies a series of result consumer in order&quot;&quot;&quot;</span>
 
@@ -90,7 +90,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">consumers</span> <span class="o">=</span> <span class="n">consumers</span>
 
 <div class="viewcode-block" id="ThenResultConsumer.consume_result">
-<a class="viewcode-back" href="../../../sustainablecompetition.resultconsumers.html#sustainablecompetition.resultconsumers.then_result_consumer.ThenResultConsumer.consume_result">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.resultconsumers.html#DIKEBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer.consume_result">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">consume_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="n">Result</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">consumer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">consumers</span><span class="p">:</span>
             <span class="n">consumer</span><span class="o">.</span><span class="n">consume_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span></div>

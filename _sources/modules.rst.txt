@@ -1,7 +1,7 @@
-sustainablecompetition
+DIKEBenchmarker
 ======================
 
 .. toctree::
    :maxdepth: 4
 
-   sustainablecompetition
+   DIKEBenchmarker

@@ -1,37 +1,37 @@
-sustainablecompetition.resultconsumers package
+DIKEBenchmarker.resultconsumers package
 ==============================================
 
 Submodules
 ----------
 
-sustainablecompetition.resultconsumers.abstract\_consumer module
+DIKEBenchmarker.resultconsumers.abstract\_consumer module
 ----------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.resultconsumers.abstract_consumer
+.. automodule:: DIKEBenchmarker.resultconsumers.abstract_consumer
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.resultconsumers.csv\_consumer module
+DIKEBenchmarker.resultconsumers.csv\_consumer module
 -----------------------------------------------------------
 
-.. automodule:: sustainablecompetition.resultconsumers.csv_consumer
+.. automodule:: DIKEBenchmarker.resultconsumers.csv_consumer
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.resultconsumers.lambda\_consumer module
+DIKEBenchmarker.resultconsumers.lambda\_consumer module
 --------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.resultconsumers.lambda_consumer
+.. automodule:: DIKEBenchmarker.resultconsumers.lambda_consumer
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.resultconsumers.then\_result\_consumer module
+DIKEBenchmarker.resultconsumers.then\_result\_consumer module
 --------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.resultconsumers.then_result_consumer
+.. automodule:: DIKEBenchmarker.resultconsumers.then_result_consumer
    :members:
    :show-inheritance:
    :undoc-members:
@@ -39,7 +39,7 @@ sustainablecompetition.resultconsumers.then\_result\_consumer module
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.resultconsumers
+.. automodule:: DIKEBenchmarker.resultconsumers
    :members:
    :show-inheritance:
    :undoc-members:

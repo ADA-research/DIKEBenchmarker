@@ -1,21 +1,21 @@
-sustainablecompetition.performancemodels package
+DIKEBenchmarker.performancemodels package
 ================================================
 
 Submodules
 ----------
 
-sustainablecompetition.performancemodels.abstractperformancemodel module
+DIKEBenchmarker.performancemodels.abstractperformancemodel module
 ------------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.performancemodels.abstractperformancemodel
+.. automodule:: DIKEBenchmarker.performancemodels.abstractperformancemodel
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.performancemodels.randomforestmodel module
+DIKEBenchmarker.performancemodels.randomforestmodel module
 -----------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.performancemodels.randomforestmodel
+.. automodule:: DIKEBenchmarker.performancemodels.randomforestmodel
    :members:
    :show-inheritance:
    :undoc-members:
@@ -23,7 +23,7 @@ sustainablecompetition.performancemodels.randomforestmodel module
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.performancemodels
+.. automodule:: DIKEBenchmarker.performancemodels
    :members:
    :show-inheritance:
    :undoc-members:

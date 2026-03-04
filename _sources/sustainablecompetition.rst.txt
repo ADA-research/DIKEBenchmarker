@@ -1,4 +1,4 @@
-sustainablecompetition package
+DIKEBenchmarker package
 ==============================
 
 Subpackages
@@ -7,21 +7,21 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   sustainablecompetition.benchmarkadaptors
-   sustainablecompetition.data
-   sustainablecompetition.dataadaptors
-   sustainablecompetition.infrastructureadaptors
-   sustainablecompetition.performancemodels
-   sustainablecompetition.resultconsumers
-   sustainablecompetition.solveradaptors
+   DIKEBenchmarker.benchmarkadaptors
+   DIKEBenchmarker.data
+   DIKEBenchmarker.dataadaptors
+   DIKEBenchmarker.infrastructureadaptors
+   DIKEBenchmarker.performancemodels
+   DIKEBenchmarker.resultconsumers
+   DIKEBenchmarker.solveradaptors
 
 Submodules
 ----------
 
-sustainablecompetition.benchmarkatoms module
+DIKEBenchmarker.benchmarkatoms module
 --------------------------------------------
 
-.. automodule:: sustainablecompetition.benchmarkatoms
+.. automodule:: DIKEBenchmarker.benchmarkatoms
    :members:
    :show-inheritance:
    :undoc-members:
@@ -29,7 +29,7 @@ sustainablecompetition.benchmarkatoms module
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition
+.. automodule:: DIKEBenchmarker
    :members:
    :show-inheritance:
    :undoc-members:

@@ -1,21 +1,21 @@
-sustainablecompetition.benchmarkadaptors package
+DIKEBenchmarker.benchmarkadaptors package
 ================================================
 
 Submodules
 ----------
 
-sustainablecompetition.benchmarkadaptors.abstractinstance module
+DIKEBenchmarker.benchmarkadaptors.abstractinstance module
 ----------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.benchmarkadaptors.abstractinstance
+.. automodule:: DIKEBenchmarker.benchmarkadaptors.abstractinstance
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.benchmarkadaptors.satinstance module
+DIKEBenchmarker.benchmarkadaptors.satinstance module
 -----------------------------------------------------------
 
-.. automodule:: sustainablecompetition.benchmarkadaptors.satinstance
+.. automodule:: DIKEBenchmarker.benchmarkadaptors.satinstance
    :members:
    :show-inheritance:
    :undoc-members:
@@ -23,7 +23,7 @@ sustainablecompetition.benchmarkadaptors.satinstance module
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.benchmarkadaptors
+.. automodule:: DIKEBenchmarker.benchmarkadaptors
    :members:
    :show-inheritance:
    :undoc-members:

@@ -1,4 +1,4 @@
-sustainablecompetition.data package
+DIKEBenchmarker.data package
 ===================================
 
 Subpackages
@@ -7,12 +7,12 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   sustainablecompetition.data.db
+   DIKEBenchmarker.data.db
 
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.data
+.. automodule:: DIKEBenchmarker.data
    :members:
    :show-inheritance:
    :undoc-members:

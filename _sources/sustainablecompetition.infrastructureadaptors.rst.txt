@@ -1,61 +1,61 @@
-sustainablecompetition.infrastructureadaptors package
+DIKEBenchmarker.infrastructureadaptors package
 =====================================================
 
 Submodules
 ----------
 
-sustainablecompetition.infrastructureadaptors.abstractrunner module
+DIKEBenchmarker.infrastructureadaptors.abstractrunner module
 -------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.abstractrunner
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.abstractrunner
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.infrastructureadaptors.control module
+DIKEBenchmarker.infrastructureadaptors.control module
 ------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.control
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.control
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.infrastructureadaptors.localrunner module
+DIKEBenchmarker.infrastructureadaptors.localrunner module
 ----------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.localrunner
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.localrunner
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.infrastructureadaptors.parsl\_configs module
+DIKEBenchmarker.infrastructureadaptors.parsl\_configs module
 -------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.parsl_configs
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.parsl_configs
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.infrastructureadaptors.parsl\_runner module
+DIKEBenchmarker.infrastructureadaptors.parsl\_runner module
 ------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.parsl_runner
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.parsl_runner
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.infrastructureadaptors.slurm\_limits module
+DIKEBenchmarker.infrastructureadaptors.slurm\_limits module
 ------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.slurm_limits
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.slurm_limits
    :members:
    :show-inheritance:
    :undoc-members:
 
-sustainablecompetition.infrastructureadaptors.virtual\_runner module
+DIKEBenchmarker.infrastructureadaptors.virtual\_runner module
 --------------------------------------------------------------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors.virtual_runner
+.. automodule:: DIKEBenchmarker.infrastructureadaptors.virtual_runner
    :members:
    :show-inheritance:
    :undoc-members:
@@ -63,7 +63,7 @@ sustainablecompetition.infrastructureadaptors.virtual\_runner module
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.infrastructureadaptors
+.. automodule:: DIKEBenchmarker.infrastructureadaptors
    :members:
    :show-inheritance:
    :undoc-members:

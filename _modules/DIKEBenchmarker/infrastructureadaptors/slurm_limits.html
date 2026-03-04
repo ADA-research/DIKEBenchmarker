@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sustainablecompetition.infrastructureadaptors.slurm_limits &mdash; DIKE 1 documentation</title>
+  <title>DIKEBenchmarker.infrastructureadaptors.slurm_limits &mdash; DIKE 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
@@ -42,7 +42,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">Configuration File Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">sustainablecompetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">DIKEBenchmarker</a></li>
 </ul>
 
         </div>
@@ -60,7 +60,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">sustainablecompetition.infrastructureadaptors.slurm_limits</li>
+      <li class="breadcrumb-item active">DIKEBenchmarker.infrastructureadaptors.slurm_limits</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,7 +69,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for sustainablecompetition.infrastructureadaptors.slurm_limits</h1><div class="highlight"><pre>
+  <h1>Source code for DIKEBenchmarker.infrastructureadaptors.slurm_limits</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">This module provides functions to interact with Slurm workload manager</span>
 <span class="sd">to retrieve user job limits, current job counts, and quality of service (QOS) information.</span>
@@ -113,7 +113,7 @@
 
 
 <div class="viewcode-block" id="get_current_jobs">
-<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#sustainablecompetition.infrastructureadaptors.slurm_limits.get_current_jobs">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#DIKEBenchmarker.infrastructureadaptors.slurm_limits.get_current_jobs">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_current_jobs</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the number of currently running jobs for the specified user.</span>
@@ -127,7 +127,7 @@
 
 
 <div class="viewcode-block" id="get_user_limits">
-<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#sustainablecompetition.infrastructureadaptors.slurm_limits.get_user_limits">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#DIKEBenchmarker.infrastructureadaptors.slurm_limits.get_user_limits">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_user_limits</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns (MaxJobs, MaxSubmitJobs)</span>
@@ -148,7 +148,7 @@
 
 
 <div class="viewcode-block" id="get_user_qos">
-<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#sustainablecompetition.infrastructureadaptors.slurm_limits.get_user_qos">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#DIKEBenchmarker.infrastructureadaptors.slurm_limits.get_user_qos">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_user_qos</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the QOS of the specified user.</span>
@@ -163,7 +163,7 @@
 
 
 <div class="viewcode-block" id="get_qos_limits">
-<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#sustainablecompetition.infrastructureadaptors.slurm_limits.get_qos_limits">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#DIKEBenchmarker.infrastructureadaptors.slurm_limits.get_qos_limits">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_qos_limits</span><span class="p">(</span><span class="n">qos</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns (MaxJobs, MaxSubmitJobs)</span>
@@ -180,7 +180,7 @@
 
 
 <div class="viewcode-block" id="get_group_limits">
-<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#sustainablecompetition.infrastructureadaptors.slurm_limits.get_group_limits">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#DIKEBenchmarker.infrastructureadaptors.slurm_limits.get_group_limits">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_group_limits</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return GrpJobs limits for all Slurm associations of the user.&quot;&quot;&quot;</span>
     <span class="n">out</span> <span class="o">=</span> <span class="n">_run</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sacctmgr show assoc where user=</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2"> format=GrpJobs -n -P&quot;</span><span class="p">)</span>
@@ -198,7 +198,7 @@
 
 
 <div class="viewcode-block" id="compute_max_blocks">
-<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#sustainablecompetition.infrastructureadaptors.slurm_limits.compute_max_blocks">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.infrastructureadaptors.html#DIKEBenchmarker.infrastructureadaptors.slurm_limits.compute_max_blocks">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">compute_max_blocks</span><span class="p">(</span><span class="n">safety_factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">fallback</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine safe maximum of simultaneously submitted jobs.&quot;&quot;&quot;</span>
     <span class="n">user</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getuser</span><span class="p">()</span>

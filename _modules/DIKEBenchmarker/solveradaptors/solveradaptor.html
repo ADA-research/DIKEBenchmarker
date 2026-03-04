@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>sustainablecompetition.solveradaptors.solveradaptor &mdash; DIKE 1 documentation</title>
+  <title>DIKEBenchmarker.solveradaptors.solveradaptor &mdash; DIKE 1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
 
@@ -42,7 +42,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">Configuration File Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">sustainablecompetition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">DIKEBenchmarker</a></li>
 </ul>
 
         </div>
@@ -60,7 +60,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">sustainablecompetition.solveradaptors.solveradaptor</li>
+      <li class="breadcrumb-item active">DIKEBenchmarker.solveradaptors.solveradaptor</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,14 +69,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for sustainablecompetition.solveradaptors.solveradaptor</h1><div class="highlight"><pre>
+  <h1>Source code for DIKEBenchmarker.solveradaptors.solveradaptor</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;SAT Solver Adaptor.&quot;&quot;&quot;</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">sustainablecompetition.solveradaptors.abstractexecutable</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractExecutable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">DIKEBenchmarker.solveradaptors.abstractexecutable</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractExecutable</span>
 
 
 <div class="viewcode-block" id="SolverAdaptor">
-<a class="viewcode-back" href="../../../sustainablecompetition.solveradaptors.html#sustainablecompetition.solveradaptors.solveradaptor.SolverAdaptor">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.solveradaptors.html#DIKEBenchmarker.solveradaptors.solveradaptor.SolverAdaptor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SolverAdaptor</span><span class="p">(</span><span class="n">AbstractExecutable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Maintain paths to solvers and make them accessible by their IDs.&quot;&quot;&quot;</span>
 
@@ -85,7 +85,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">serialized</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SolverAdaptor.format_command">
-<a class="viewcode-back" href="../../../sustainablecompetition.solveradaptors.html#sustainablecompetition.solveradaptors.solveradaptor.SolverAdaptor.format_command">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.solveradaptors.html#DIKEBenchmarker.solveradaptors.solveradaptor.SolverAdaptor.format_command">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">binaries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">certificate</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the command line for a given solver ID, replacing placeholders.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_base</span><span class="p">(</span><span class="n">xid</span><span class="p">,</span> <span class="n">binaries</span><span class="p">)</span>
@@ -98,7 +98,7 @@
         <span class="k">return</span> <span class="n">base</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$INST&quot;</span><span class="p">,</span> <span class="n">instance</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;$CERT&quot;</span><span class="p">,</span> <span class="n">certificate</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SolverAdaptor.parse_result">
-<a class="viewcode-back" href="../../../sustainablecompetition.solveradaptors.html#sustainablecompetition.solveradaptors.solveradaptor.SolverAdaptor.parse_result">[docs]</a>
+<a class="viewcode-back" href="../../../sustainablecompetition.solveradaptors.html#DIKEBenchmarker.solveradaptors.solveradaptor.SolverAdaptor.parse_result">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract the result from the solver file.&quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>

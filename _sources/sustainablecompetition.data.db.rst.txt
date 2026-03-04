@@ -1,10 +1,10 @@
-sustainablecompetition.data.db package
+DIKEBenchmarker.data.db package
 ======================================
 
 Module contents
 ---------------
 
-.. automodule:: sustainablecompetition.data.db
+.. automodule:: DIKEBenchmarker.data.db
    :members:
    :show-inheritance:
    :undoc-members:
