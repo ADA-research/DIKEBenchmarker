@@ -8,7 +8,7 @@ import time
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from DIKEBenchmarker.benchmarkingmethods.abstract_benchmarker import AbstractBenchmarker
+    from DIKEBenchmarker.benchmarkingmethods.benchmarker import AbstractBenchmarker
 
 from DIKEBenchmarker.benchmarkadaptors.abstractinstance import AbstractInstanceAdaptor
 from DIKEBenchmarker.solveradaptors.abstractexecutable import AbstractExecutable

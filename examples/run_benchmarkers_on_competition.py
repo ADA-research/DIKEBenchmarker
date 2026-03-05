@@ -6,7 +6,7 @@ import os
 import sqlite3
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor, as_completed
 from tqdm import tqdm
-from DIKEBenchmarker.benchmarkingmethods.combined_benchmarker import CombinedBenchmarker
+from DIKEBenchmarker.benchmarkingmethods.benchmarker import Benchmarker
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.discrimination_instance_selector import DiscriminationInstanceSelector
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.random_instance_selector import RandomInstanceSelector
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.variance_instance_selector import VarianceInstanceSelector
@@ -46,7 +46,7 @@ def generate_all_method_configs():
 def make_benchmarker_from_config(sel_cls, stop_cls, benchmark_ids, solver_id, solvers_challenged, adap, confidence, checker_id="none"):
     selector = _make_selector(sel_cls, benchmark_ids, solver_id, adap)
     stopping_criteria = _make_stopping_criterion(stop_cls, benchmark_ids, solver_id, solvers_challenged, confidence, adap)
-    return CombinedBenchmarker(selector, stopping_criteria, benchmark_ids, solver_id, checker_id)
+    return Benchmarker(selector, stopping_criteria, benchmark_ids, solver_id, checker_id)
 
 
 def _run_single_experiment(

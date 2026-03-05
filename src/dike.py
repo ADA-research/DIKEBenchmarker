@@ -13,8 +13,9 @@ from parsl.providers import LocalProvider
 
 import polars as pl
 
-from DIKEBenchmarker.benchmarkingmethods.abstract_benchmarker import AbstractBenchmarker
-from DIKEBenchmarker.benchmarkingmethods.combined_benchmarker import CombinedBenchmarker
+from DIKEBenchmarker.benchmarkingmethods.benchmarker import Benchmarker
+from DIKEBenchmarker.benchmarkingmethods.stopping_criterion.stopping_criteria import NoStoppingCriteria
+from DIKEBenchmarker.benchmarkingmethods.instance_selectors.trivial_instance_selector import TrivialInstanceSelector
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.discrimination_instance_selector import DiscriminationInstanceSelector
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.random_instance_selector import RandomInstanceSelector
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.variance_instance_selector import VarianceInstanceSelector
@@ -26,7 +27,6 @@ from DIKEBenchmarker.infrastructureadaptors.util import slurm_limits
 
 from DIKEBenchmarker.infrastructureadaptors.util.parsl_configs import make_slurm_config
 from DIKEBenchmarker.infrastructureadaptors.parsl_runner import ParslRunner
-from DIKEBenchmarker.benchmarkingmethods.trivial_benchmarker import TrivialBenchmarker
 from DIKEBenchmarker.resultconsumers.lambda_consumer import LambdaConsumer
 from DIKEBenchmarker.solveradaptors.executionwrapper import ExecutionWrapper
 from DIKEBenchmarker.solveradaptors.solveradaptor import SolverAdaptor
@@ -47,13 +47,15 @@ def get_instance_adaptor() -> SATInstanceAdaptor:
     return instance_adaptor
 
 
-def get_benchmarker(benchmarking_method: dict, solver_id: str, checker_id: str, logroot) -> AbstractBenchmarker:
+def get_benchmarker(benchmarking_method: dict, solver_id: str, checker_id: str, logroot) -> Benchmarker:
     """Create a benchmarker based on the benchmarking method specified in the configuration."""
     # Base case: if selection method is allpairs, we can use the trivial benchmarker which evaluates
     # all pairs of solvers and instances without any stopping criterion
     if benchmarking_method["selection_method"] == "allpairs":
-        return TrivialBenchmarker(
-            benchmarks=benchmarking_method["benchmarks"],
+        return Benchmarker(
+            selector=TrivialInstanceSelector(benchmark_ids=benchmarking_method["benchmarks"], solver_id=solver_id),
+            stopping_criteria=NoStoppingCriteria(),
+            benchmark_ids=benchmarking_method["benchmarks"],
             solver_id=solver_id,
             checker_id=checker_id,
             logroot=logroot,
@@ -97,7 +99,7 @@ def get_benchmarker(benchmarking_method: dict, solver_id: str, checker_id: str, 
     else:
         raise ValueError(f"Unsupported selection method: {benchmarking_method['selection_method']}")
 
-    return CombinedBenchmarker(
+    return Benchmarker(
         selector=selector,
         stopping_criteria=stopping_criterion,
         benchmark_ids=benchmark_ids,

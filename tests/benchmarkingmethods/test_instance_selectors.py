@@ -11,6 +11,7 @@ from DIKEBenchmarker.dataadaptors.sqlite_dataadaptor import SqlDataAdaptor
 
 def build_adaptor() -> SqlDataAdaptor:
     db_path = files("DIKEBenchmarker.data.db").joinpath("sustainablecompetition.db")
+    print(f"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Using database at: {db_path}")
     db_adaptor = SqlDataAdaptor(db_path)
     return db_adaptor
 
