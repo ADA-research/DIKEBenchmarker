@@ -2,7 +2,7 @@ import pytest
 
 
 from DIKEBenchmarker.benchmarkatoms import Job
-from DIKEBenchmarker.benchmarkingmethods.trivial_benchmarker import TrivialBenchmarker
+from DIKEBenchmarker.benchmarkingmethods.benchmarker import TrivialBenchmarker
 
 
 NJOBS = 50

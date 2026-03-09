@@ -11,9 +11,11 @@ from abc import ABC
 
 from DIKEBenchmarker.benchmarkatoms import Job, Result
 from DIKEBenchmarker.benchmarkingmethods.instance_selectors.instance_selector import InstanceSelector
+from DIKEBenchmarker.benchmarkingmethods.instance_selectors.trivial_instance_selector import TrivialInstanceSelector
+from DIKEBenchmarker.benchmarkingmethods.stopping_criterion.percentage_stopping_criterion import PercentageStoppingCriterion
 from DIKEBenchmarker.benchmarkingmethods.stopping_criterion.stopping_criteria import StoppingCriteria
 
-__all__ = ["Benchmarker"]
+__all__ = ["Benchmarker", "TrivialBenchmarker"]
 
 
 class Benchmarker(ABC):
@@ -73,3 +75,16 @@ class Benchmarker(ABC):
         """Handle result by passing it to the selector and stopping criteria."""
         self.selector.handle_result(result)
         self.stopping_criteria.handle_result(result)
+
+
+class TrivialBenchmarker(Benchmarker):
+    def __init__(
+        self,
+        benchmark_ids: list[str],
+        solver_id: str,
+        checker_id: str = "none",
+        logroot: str = "./logs",
+    ):
+        super().__init__(
+            TrivialInstanceSelector(benchmark_ids, solver_id), PercentageStoppingCriterion(benchmark_ids, 1.0), benchmark_ids, solver_id, checker_id, logroot
+        )
