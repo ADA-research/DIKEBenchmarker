@@ -82,7 +82,7 @@
 
 
 <div class="viewcode-block" id="ExecutionWrapper">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ExecutionWrapper</span><span class="p">(</span><span class="n">AbstractExecutable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class to manage execution wrappers.&quot;&quot;&quot;</span>
 
@@ -103,7 +103,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">walltimelimit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cputimelimit</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># ensure walltime is always larger than cputime</span>
 
 <div class="viewcode-block" id="ExecutionWrapper.to_dict">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.to_dict">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.to_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the execution wrapper to a dictionary representation.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -115,7 +115,7 @@
 
 
 <div class="viewcode-block" id="ExecutionWrapper.from_dict">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.from_dict">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.from_dict">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;ExecutionWrapper&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Create an execution wrapper from a dictionary representation.&quot;&quot;&quot;</span>
@@ -123,7 +123,7 @@
 
 
 <div class="viewcode-block" id="ExecutionWrapper.set_resource_limits">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.set_resource_limits">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.set_resource_limits">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_resource_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cputimelimit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">walltimelimit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">memorylimit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set resource limits if specified.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">memorylimit</span> <span class="o">=</span> <span class="n">memorylimit</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">memorylimit</span>
@@ -132,7 +132,7 @@
 
 
 <div class="viewcode-block" id="ExecutionWrapper.format_command">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.format_command">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.format_command">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xid</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">binaries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">wrapped_cmd</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wrapper_output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">wrapped_output</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the command line to run the execution wrapper with parameters.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_base</span><span class="p">(</span><span class="n">xid</span><span class="p">,</span> <span class="n">binaries</span><span class="p">)</span>
@@ -152,7 +152,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="ExecutionWrapper.parse_result">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.parse_result">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.parse_result">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the runsolver log output to extract runtime statistics.</span>
 

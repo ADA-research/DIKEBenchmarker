@@ -18,7 +18,9 @@
       <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DikeBenchmarker.solveradaptors package" href="DikeBenchmarker.solveradaptors.html" />
+    <link rel="prev" title="DikeBenchmarker.performancemodels package" href="DikeBenchmarker.performancemodels.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,9 +43,27 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration File Format</a></li>
-<li class="toctree-l1"><a class="reference internal" href="modules.html">DikeBenchmarker</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DikeBenchmarker</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="DikeBenchmarker.html">DikeBenchmarker package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="DikeBenchmarker.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html">DikeBenchmarker.benchmarkadaptors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.data.html">DikeBenchmarker.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html">DikeBenchmarker.dataadaptors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html">DikeBenchmarker.infrastructureadaptors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.performancemodels.html">DikeBenchmarker.performancemodels package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">DikeBenchmarker.resultconsumers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html">DikeBenchmarker.solveradaptors package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.html#module-DikeBenchmarker.benchmarkatoms">DikeBenchmarker.benchmarkatoms module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.html#module-DikeBenchmarker">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -60,9 +80,11 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">DikeBenchmarker</a></li>
+          <li class="breadcrumb-item"><a href="DikeBenchmarker.html">DikeBenchmarker package</a></li>
       <li class="breadcrumb-item active">DikeBenchmarker.resultconsumers package</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/DIKEBenchmarker.resultconsumers.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/DikeBenchmarker.resultconsumers.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -86,11 +108,11 @@
 It is guaranteed that results are processed in order.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer.consume_result">
-<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">consume_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/abstract_consumer.html#AbstractConsumer.consume_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer.consume_result" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">consume_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/abstract_consumer.html#AbstractConsumer.consume_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer.consume_result" title="Link to this definition"></a></dt>
 <dd><p>Process a Result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><em>Result</em></a>) – the last result obtained.</p>
+<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><em>Result</em></a>) – the last result obtained.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -106,16 +128,16 @@ It is guaranteed that results are processed in order.</p>
 <p>Lambda consumer for benchmarking results.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DikeBenchmarker.resultconsumers.lambda_consumer.</span></span><span class="sig-name descname"><span class="pre">LambdaConsumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/lambda_consumer.html#LambdaConsumer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer" title="Link to this definition"></a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DikeBenchmarker.resultconsumers.lambda_consumer.</span></span><span class="sig-name descname"><span class="pre">LambdaConsumer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/lambda_consumer.html#LambdaConsumer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer" title="DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractConsumer</span></code></a></p>
 <p>Applies a given function to the result.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer.consume_result">
-<span class="sig-name descname"><span class="pre">consume_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/lambda_consumer.html#LambdaConsumer.consume_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer.consume_result" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">consume_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/lambda_consumer.html#LambdaConsumer.consume_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer.consume_result" title="Link to this definition"></a></dt>
 <dd><p>Process a Result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><em>Result</em></a>) – the last result obtained.</p>
+<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><em>Result</em></a>) – the last result obtained.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -133,11 +155,11 @@ It is guaranteed that results are processed in order.</p>
 <p>Applies a series of result consumer in order</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="DikeBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer.consume_result">
-<span class="sig-name descname"><span class="pre">consume_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/then_result_consumer.html#ThenResultConsumer.consume_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer.consume_result" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">consume_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><span class="pre">Result</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/resultconsumers/then_result_consumer.html#ThenResultConsumer.consume_result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer.consume_result" title="Link to this definition"></a></dt>
 <dd><p>Process a Result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="DIKEBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><em>Result</em></a>) – the last result obtained.</p>
+<dd class="field-odd"><p><strong>result</strong> (<a class="reference internal" href="DikeBenchmarker.html#DikeBenchmarker.benchmarkatoms.Result" title="DikeBenchmarker.benchmarkatoms.Result"><em>Result</em></a>) – the last result obtained.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -153,7 +175,10 @@ It is guaranteed that results are processed in order.</p>
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="DikeBenchmarker.performancemodels.html" class="btn btn-neutral float-left" title="DikeBenchmarker.performancemodels package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DikeBenchmarker.solveradaptors.html" class="btn btn-neutral float-right" title="DikeBenchmarker.solveradaptors package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

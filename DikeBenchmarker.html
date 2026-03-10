@@ -1,0 +1,415 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DikeBenchmarker package &mdash; Dike 1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=29a6c3e3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DikeBenchmarker.benchmarkadaptors package" href="DikeBenchmarker.benchmarkadaptors.html" />
+    <link rel="prev" title="DikeBenchmarker" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Dike
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration File Format</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">DikeBenchmarker</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DikeBenchmarker package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html">DikeBenchmarker.benchmarkadaptors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.data.html">DikeBenchmarker.data package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html">DikeBenchmarker.dataadaptors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html">DikeBenchmarker.infrastructureadaptors package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.performancemodels.html">DikeBenchmarker.performancemodels package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html">DikeBenchmarker.resultconsumers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html">DikeBenchmarker.solveradaptors package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DikeBenchmarker.benchmarkatoms">DikeBenchmarker.benchmarkatoms module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.Job"><code class="docutils literal notranslate"><span class="pre">Job</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.JobState"><code class="docutils literal notranslate"><span class="pre">JobState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.JobStateError"><code class="docutils literal notranslate"><span class="pre">JobStateError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.Result"><code class="docutils literal notranslate"><span class="pre">Result</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-DikeBenchmarker">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Dike</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">DikeBenchmarker</a></li>
+      <li class="breadcrumb-item active">DikeBenchmarker package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/DikeBenchmarker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dikebenchmarker-package">
+<h1>DikeBenchmarker package<a class="headerlink" href="#dikebenchmarker-package" title="Link to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html">DikeBenchmarker.benchmarkadaptors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html#module-DikeBenchmarker.benchmarkadaptors.abstractinstance">DikeBenchmarker.benchmarkadaptors.abstractinstance module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html#DikeBenchmarker.benchmarkadaptors.abstractinstance.AbstractInstanceAdaptor"><code class="docutils literal notranslate"><span class="pre">AbstractInstanceAdaptor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html#DikeBenchmarker.benchmarkadaptors.abstractinstance.AbstractInstanceAdaptor.get_path"><code class="docutils literal notranslate"><span class="pre">AbstractInstanceAdaptor.get_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html#dikebenchmarker-benchmarkadaptors-satinstance-module">DikeBenchmarker.benchmarkadaptors.satinstance module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.benchmarkadaptors.html#module-DikeBenchmarker.benchmarkadaptors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.data.html">DikeBenchmarker.data package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.data.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.data.db.html">DikeBenchmarker.data.db package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.data.db.html#module-DikeBenchmarker.data.db">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.data.html#module-DikeBenchmarker.data">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html">DikeBenchmarker.dataadaptors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#dikebenchmarker-dataadaptors-competition-dataadaptor-module">DikeBenchmarker.dataadaptors.competition_dataadaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#dikebenchmarker-dataadaptors-csv-dataadaptor-module">DikeBenchmarker.dataadaptors.csv_dataadaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#dikebenchmarker-dataadaptors-dataadaptor-module">DikeBenchmarker.dataadaptors.dataadaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#dikebenchmarker-dataadaptors-inmemory-dataadaptor-module">DikeBenchmarker.dataadaptors.inmemory_dataadaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#dikebenchmarker-dataadaptors-merge-dataadaptor-module">DikeBenchmarker.dataadaptors.merge_dataadaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#dikebenchmarker-dataadaptors-sqlite-dataadaptor-module">DikeBenchmarker.dataadaptors.sqlite_dataadaptor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.dataadaptors.html#module-DikeBenchmarker.dataadaptors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html">DikeBenchmarker.infrastructureadaptors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html#dikebenchmarker-infrastructureadaptors-abstract-runner-module">DikeBenchmarker.infrastructureadaptors.abstract_runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html#dikebenchmarker-infrastructureadaptors-local-runner-module">DikeBenchmarker.infrastructureadaptors.local_runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html#dikebenchmarker-infrastructureadaptors-parsl-runner-module">DikeBenchmarker.infrastructureadaptors.parsl_runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html#dikebenchmarker-infrastructureadaptors-virtual-runner-module">DikeBenchmarker.infrastructureadaptors.virtual_runner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.infrastructureadaptors.html#module-DikeBenchmarker.infrastructureadaptors">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.performancemodels.html">DikeBenchmarker.performancemodels package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#module-DikeBenchmarker.performancemodels.abstractperformancemodel">DikeBenchmarker.performancemodels.abstractperformancemodel module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#DikeBenchmarker.performancemodels.abstractperformancemodel.AbstractPerformanceModel"><code class="docutils literal notranslate"><span class="pre">AbstractPerformanceModel</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#DikeBenchmarker.performancemodels.abstractperformancemodel.AbstractPerformanceModel.predict"><code class="docutils literal notranslate"><span class="pre">AbstractPerformanceModel.predict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#DikeBenchmarker.performancemodels.abstractperformancemodel.AbstractPerformanceModel.train"><code class="docutils literal notranslate"><span class="pre">AbstractPerformanceModel.train()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#dikebenchmarker-performancemodels-randomforestmodel-module">DikeBenchmarker.performancemodels.randomforestmodel module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.performancemodels.html#module-DikeBenchmarker.performancemodels">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html">DikeBenchmarker.resultconsumers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#module-DikeBenchmarker.resultconsumers.abstract_consumer">DikeBenchmarker.resultconsumers.abstract_consumer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer"><code class="docutils literal notranslate"><span class="pre">AbstractConsumer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#DikeBenchmarker.resultconsumers.abstract_consumer.AbstractConsumer.consume_result"><code class="docutils literal notranslate"><span class="pre">AbstractConsumer.consume_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#dikebenchmarker-resultconsumers-csv-consumer-module">DikeBenchmarker.resultconsumers.csv_consumer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#module-DikeBenchmarker.resultconsumers.lambda_consumer">DikeBenchmarker.resultconsumers.lambda_consumer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer"><code class="docutils literal notranslate"><span class="pre">LambdaConsumer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#DikeBenchmarker.resultconsumers.lambda_consumer.LambdaConsumer.consume_result"><code class="docutils literal notranslate"><span class="pre">LambdaConsumer.consume_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#module-DikeBenchmarker.resultconsumers.then_result_consumer">DikeBenchmarker.resultconsumers.then_result_consumer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#DikeBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer"><code class="docutils literal notranslate"><span class="pre">ThenResultConsumer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#DikeBenchmarker.resultconsumers.then_result_consumer.ThenResultConsumer.consume_result"><code class="docutils literal notranslate"><span class="pre">ThenResultConsumer.consume_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.resultconsumers.html#module-DikeBenchmarker.resultconsumers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html">DikeBenchmarker.solveradaptors package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#module-DikeBenchmarker.solveradaptors.abstractexecutable">DikeBenchmarker.solveradaptors.abstractexecutable module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.format_command"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.format_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.from_dict"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.get_binaries"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.get_binaries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.get_checker"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.get_checker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.get_format_string"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.get_format_string()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.get_ids"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.get_ids()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.parse_result"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.parse_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.read_registry"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.read_registry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.register"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.register()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.registry"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.registry</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.abstractexecutable.AbstractExecutable.to_dict"><code class="docutils literal notranslate"><span class="pre">AbstractExecutable.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#module-DikeBenchmarker.solveradaptors.checkeradaptor">DikeBenchmarker.solveradaptors.checkeradaptor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor"><code class="docutils literal notranslate"><span class="pre">CheckerAdaptor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor.format_command"><code class="docutils literal notranslate"><span class="pre">CheckerAdaptor.format_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor.parse_result"><code class="docutils literal notranslate"><span class="pre">CheckerAdaptor.parse_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#module-DikeBenchmarker.solveradaptors.executionwrapper">DikeBenchmarker.solveradaptors.executionwrapper module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper"><code class="docutils literal notranslate"><span class="pre">ExecutionWrapper</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.format_command"><code class="docutils literal notranslate"><span class="pre">ExecutionWrapper.format_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.from_dict"><code class="docutils literal notranslate"><span class="pre">ExecutionWrapper.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.parse_result"><code class="docutils literal notranslate"><span class="pre">ExecutionWrapper.parse_result()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.set_resource_limits"><code class="docutils literal notranslate"><span class="pre">ExecutionWrapper.set_resource_limits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.executionwrapper.ExecutionWrapper.to_dict"><code class="docutils literal notranslate"><span class="pre">ExecutionWrapper.to_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#module-DikeBenchmarker.solveradaptors.solveradaptor">DikeBenchmarker.solveradaptors.solveradaptor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.solveradaptor.SolverAdaptor"><code class="docutils literal notranslate"><span class="pre">SolverAdaptor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.solveradaptor.SolverAdaptor.format_command"><code class="docutils literal notranslate"><span class="pre">SolverAdaptor.format_command()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.solveradaptor.SolverAdaptor.parse_result"><code class="docutils literal notranslate"><span class="pre">SolverAdaptor.parse_result()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DikeBenchmarker.solveradaptors.html#module-DikeBenchmarker.solveradaptors">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-DikeBenchmarker.benchmarkatoms">
+<span id="dikebenchmarker-benchmarkatoms-module"></span><h2>DikeBenchmarker.benchmarkatoms module<a class="headerlink" href="#module-DikeBenchmarker.benchmarkatoms" title="Link to this heading"></a></h2>
+<p>Basic benchmarking job and result representation</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DikeBenchmarker.benchmarkatoms.</span></span><span class="sig-name descname"><span class="pre">Job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_producer</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AbstractBenchmarker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checker_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logroot</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Benchmarking Job that behaves like a future.</p>
+<p>Identity: benchmark_id, solver_id, created_at (ctor time).</p>
+<p>Lifecycle:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>CREATED (initial)</dt><dd><p>–[put into JobLog]–&gt; SUBMITTED
+–[start working on]–&gt; RUNNING
+–[finish working on]–&gt; FINISHED | FAILED</p>
+</dd>
+</dl>
+<p>CREATED/SUBMITTED -&gt; CANCELLED</p>
+</div></blockquote>
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.cancel_local">
+<span class="sig-name descname"><span class="pre">cancel_local</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.cancel_local"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.cancel_local" title="Link to this definition"></a></dt>
+<dd><p>Mark the job as cancelled.
+Called by the benchmarker to prevent the job from being submitted to the external system.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.clone_retry">
+<span class="sig-name descname"><span class="pre">clone_retry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">decrement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.Job" title="DikeBenchmarker.benchmarkatoms.Job"><span class="pre">Job</span></a></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.clone_retry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.clone_retry" title="Link to this definition"></a></dt>
+<dd><p>Create a clone of this job with identical benchmark_id, solver_id, checker_id, and logroot.
+The cloned job will have a new created_at timestamp and will be in the CREATED state.
+The retries count will be decremented by the specified amount.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.get_log_prefix">
+<span class="sig-name descname"><span class="pre">get_log_prefix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.get_log_prefix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.get_log_prefix" title="Link to this definition"></a></dt>
+<dd><p>Get the logfile prefix for this job.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.mark_running">
+<span class="sig-name descname"><span class="pre">mark_running</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.mark_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.mark_running" title="Link to this definition"></a></dt>
+<dd><p>Mark the job as running.
+Called by the infrastructure adaptor once the job started to run.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.mark_submitted">
+<span class="sig-name descname"><span class="pre">mark_submitted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.mark_submitted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.mark_submitted" title="Link to this definition"></a></dt>
+<dd><p>Mark the job as submitted.
+Called by the infrastructure adaptor upon receiving the job.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.set_failed">
+<span class="sig-name descname"><span class="pre">set_failed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.set_failed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.set_failed" title="Link to this definition"></a></dt>
+<dd><p>Mark the job as failed.
+Called by the infrastructure adaptor when the job has completed unsuccessfully.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Job.set_finished">
+<span class="sig-name descname"><span class="pre">set_finished</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Job.set_finished"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Job.set_finished" title="Link to this definition"></a></dt>
+<dd><p>Mark the job as finished.
+Called by the infrastructure adaptor when the job has completed successfully.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DikeBenchmarker.benchmarkatoms.</span></span><span class="sig-name descname"><span class="pre">JobState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#JobState"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Possible states of a Job.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState.CANCELLED">
+<span class="sig-name descname"><span class="pre">CANCELLED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></span><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState.CANCELLED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState.CREATED">
+<span class="sig-name descname"><span class="pre">CREATED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></span><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState.CREATED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState.FAILED">
+<span class="sig-name descname"><span class="pre">FAILED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></span><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState.FAILED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState.FINISHED">
+<span class="sig-name descname"><span class="pre">FINISHED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></span><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState.FINISHED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState.RUNNING">
+<span class="sig-name descname"><span class="pre">RUNNING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></span><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState.RUNNING" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobState.SUBMITTED">
+<span class="sig-name descname"><span class="pre">SUBMITTED</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobState.SUBMITTED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.JobStateError">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DikeBenchmarker.benchmarkatoms.</span></span><span class="sig-name descname"><span class="pre">JobStateError</span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#JobStateError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.JobStateError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when an invalid state transition is attempted on a Job.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Result">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">DikeBenchmarker.benchmarkatoms.</span></span><span class="sig-name descname"><span class="pre">Result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.Job" title="DikeBenchmarker.benchmarkatoms.Job"><span class="pre">Job</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">failed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Result" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the result of a benchmark job.
+Contains a reference to the job and its resource usage.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Result.get_job">
+<span class="sig-name descname"><span class="pre">get_job</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#DikeBenchmarker.benchmarkatoms.Job" title="DikeBenchmarker.benchmarkatoms.Job"><span class="pre">Job</span></a></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Result.get_job"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Result.get_job" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DikeBenchmarker.benchmarkatoms.Result.has_failed">
+<span class="sig-name descname"><span class="pre">has_failed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/DikeBenchmarker/benchmarkatoms.html#Result.has_failed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DikeBenchmarker.benchmarkatoms.Result.has_failed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DikeBenchmarker">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DikeBenchmarker" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="DikeBenchmarker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DikeBenchmarker.benchmarkadaptors.html" class="btn btn-neutral float-right" title="DikeBenchmarker.benchmarkadaptors package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Ashlin Iser, Marie Anastacio, Théo Matricon.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

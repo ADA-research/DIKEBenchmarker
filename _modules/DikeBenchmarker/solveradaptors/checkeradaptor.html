@@ -78,7 +78,7 @@
 
 
 <div class="viewcode-block" id="CheckerAdaptor">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CheckerAdaptor</span><span class="p">(</span><span class="n">AbstractExecutable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A class for executing checkers of sat or unsat certificates.&quot;&quot;&quot;</span>
 
@@ -170,7 +170,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="CheckerAdaptor.format_command">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor.format_command">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor.format_command">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">format_command</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xid</span><span class="p">,</span> <span class="n">binaries</span><span class="p">,</span> <span class="n">instance</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">certificate</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">trimmer_output</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">checker_output</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the command line for a given checker ID, replacing placeholders.&quot;&quot;&quot;</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_base</span><span class="p">(</span><span class="n">xid</span><span class="p">,</span> <span class="n">binaries</span><span class="p">)</span>
@@ -185,7 +185,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="CheckerAdaptor.parse_result">
-<a class="viewcode-back" href="../../../DIKEBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor.parse_result">[docs]</a>
+<a class="viewcode-back" href="../../../DikeBenchmarker.solveradaptors.html#DikeBenchmarker.solveradaptors.checkeradaptor.CheckerAdaptor.parse_result">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outfile</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract the result from the checker file.&quot;&quot;&quot;</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
