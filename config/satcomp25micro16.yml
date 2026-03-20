@@ -22,4 +22,4 @@ scheduling:
 # Benchmark and solver files
 benchmarks: ./satcomp25.instances.csv # Path to CSV containing benchmark hashes
 solvers: ./satcomp25.solvers.two.csv      # Path to CSV containing solver paths
-results: ./satcomp25micro.results          # Path to directory for storing results
+results: ./satcomp25micro.results16          # Path to directory for storing results
